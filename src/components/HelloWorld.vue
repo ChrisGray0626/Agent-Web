@@ -1,10 +1,9 @@
 <script lang="ts" setup>
-import {ref} from 'vue'
+import { ref } from "vue";
 
-defineProps<{ msg: string }>()
+defineProps<{ msg: string }>();
 
-const count = ref(0)
-
+const count = ref(0);
 </script>
 
 <template>
@@ -21,7 +20,7 @@ const count = ref(0)
   <p>
     Check out
     <a href="https://vuejs.org/guide/quick-start.html#local" target="_blank"
-    >create-vue</a
+      >create-vue</a
     >, the official Vue + Vite starter
   </p>
   <p>
@@ -32,8 +31,32 @@ const count = ref(0)
   <p class="read-the-docs">Click on the Vite and Vue logos to learn more</p>
 </template>
 
-<style scoped>
+<style lang="less" scoped>
 .read-the-docs {
   color: #888;
+}
+.card {
+  text-align: center;
+  padding: 2em;
+}
+button {
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+
+button:hover {
+  border-color: #646cff;
+}
+
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
 }
 </style>

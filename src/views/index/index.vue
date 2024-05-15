@@ -1,14 +1,19 @@
 <script lang="ts" setup>
-import "./index.less"
-
-import HelloWorld from "/src/components/HelloWorld.vue"
+import CenterBox from "/src/components/CenterBox.vue";
+import TitleBar from "/src/components/TitleBar.vue";
+import LeftBox from "/src/components/LeftBox.vue";
 </script>
 
 <template>
-  <div>
-    <a href="https://vuejs.org/" target="_blank">
-      <img alt="Vue logo" class="logo vue" src="/src/assets/vue.svg"/>
-    </a>
+  <TitleBar />
+  <div class="container">
+    <LeftBox />
+    <CenterBox />
   </div>
-  <HelloWorld msg="Vite + Vue"/>
 </template>
+
+<style lang="less" scoped>
+.container {
+  display: flex;
+}
+</style>
