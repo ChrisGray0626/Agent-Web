@@ -22,7 +22,8 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
     "types": [
-      "node"
+      "node",
+      "element-plus/global"
     ],
   },
   "include": [
