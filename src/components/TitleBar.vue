@@ -16,31 +16,30 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 80px;
-  border: 1px #e4e7ed solid;
+  height: 100%;
   background-color: #fff;
   font-size: 32px;
-}
-.title {
-  position: relative;
-}
-img {
-  position: absolute;
-  left: calc(100% + 10px);
-  top: 0;
-  bottom: 0;
-  margin: auto;
-}
-.button {
-  position: absolute;
-  right: 10px;
-  height: 50px;
-  width: 150px;
-  font-size: 20px;
-  text-align: center;
-  line-height: 50px;
-  border-radius: 8px;
-  background-color: #000;
-  color: #fff;
+  .title {
+    position: relative;
+    img {
+      position: absolute;
+      left: calc(100% + 10px);
+      top: 0;
+      bottom: 0;
+      margin: auto;
+    }
+  }
+  .button {
+    position: absolute;
+    right: 10px;
+    height: 50px;
+    width: 150px;
+    font-size: 20px;
+    text-align: center;
+    line-height: 50px;
+    border-radius: 8px;
+    background-color: #000;
+    color: #fff;
+  }
 }
 </style>
