@@ -1,16 +1,19 @@
 <script lang="ts" setup>
 import HelloWorld from "./HelloWorld.vue";
 import Question from "./Question.vue";
+import Flow from "/src/components/flow/index.vue";
+
 </script>
 
 <template>
   <div class="container">
-    <div>
-      <a href="https://vuejs.org/" target="_blank">
-        <img alt="Vue logo" class="logo vue" src="/src/assets/vue.svg" />
-      </a>
-    </div>
-    <HelloWorld msg="Agent-Web" />
+    <Flow />
+<!--    <div>-->
+<!--      <a href="https://vuejs.org/" target="_blank">-->
+<!--        <img alt="Vue logo" class="logo vue" src="/src/assets/vue.svg" />-->
+<!--      </a>-->
+<!--    </div>-->
+<!--    <HelloWorld msg="Agent-Web" />-->
   </div>
 </template>
 

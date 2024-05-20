@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.3.1",
+    "@logicflow/core": "^1.2.27",
+    "@logicflow/extension": "^1.2.27",
     "element-plus": "^2.7.3",
     "vue": "^3.4.21"
   },
