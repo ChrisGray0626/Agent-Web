@@ -13,6 +13,7 @@
     "@logicflow/core": "^1.2.27",
     "@logicflow/extension": "^1.2.27",
     "element-plus": "^2.7.3",
+    "pinia": "^2.1.7",
     "vue": "^3.4.21"
   },
   "devDependencies": {
