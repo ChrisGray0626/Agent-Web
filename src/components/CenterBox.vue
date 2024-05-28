@@ -6,12 +6,6 @@ import Flow from "/src/components/flow/index.vue";
 <template>
   <div class="container">
     <Flow />
-    <!--    <div>-->
-    <!--      <a href="https://vuejs.org/" target="_blank">-->
-    <!--        <img alt="Vue logo" class="logo vue" src="/src/assets/vue.svg" />-->
-    <!--      </a>-->
-    <!--    </div>-->
-    <!--    <HelloWorld msg="Agent-Web" />-->
   </div>
 </template>
 
