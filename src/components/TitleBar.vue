@@ -6,7 +6,7 @@
       Task Name
       <img src="../assets/task-rename.svg" />
     </div>
-    <div class="button">+ New Task</div>
+    <button>+ New Task</button>
   </div>
 </template>
 
@@ -15,30 +15,32 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  // width: 100%;
   height: 100%;
   background-color: #fff;
-  font-size: 32px;
   .title {
     position: relative;
+    font-size: 20px;
     img {
       position: absolute;
       left: calc(100% + 10px);
       top: 0;
       bottom: 0;
       margin: auto;
+      width: 25px;
     }
   }
-  .button {
+  button {
     position: absolute;
     right: 10px;
-    height: 50px;
-    width: 150px;
-    font-size: 20px;
+    height: 40px;
+    width: 110px;
+    font-size: 15px;
     text-align: center;
-    line-height: 50px;
-    border-radius: 8px;
+    line-height: 34px;
+    border-radius: 5px;
     background-color: #000;
+    border-color: #000;
     color: #fff;
   }
 }

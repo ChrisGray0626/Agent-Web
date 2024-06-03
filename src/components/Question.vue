@@ -24,7 +24,7 @@ const { task } = storeToRefs(dialogueStore);
 <style lang="less" scoped>
 .container {
   position: absolute;
-  bottom: 30px;
+  bottom: 25px;
   left: 30px;
   right: 30px;
   display: flex;
@@ -37,7 +37,6 @@ const { task } = storeToRefs(dialogueStore);
   .el-input {
     height: 50px;
     padding: 0 20px;
-    margin: 0 20px;
     width: 100%;
     :deep(.el-input__wrapper) {
       background-color: #f7f9fb;

@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import HelloWorld from "./HelloWorld.vue";
 import Flow from "/src/components/flow/index.vue";
 </script>
 
@@ -11,28 +10,7 @@ import Flow from "/src/components/flow/index.vue";
 
 <style lang="less" scoped>
 .container {
-  // position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-  &:hover {
-    filter: drop-shadow(0 0 2em #646cffaa);
-  }
-  .vue:hover {
-    filter: drop-shadow(0 0 2em #42b883aa);
-  }
-  &:hover {
-    filter: drop-shadow(0 0 2em #646cffaa);
-  }
-  .vue:hover {
-    filter: drop-shadow(0 0 2em #42b883aa);
-  }
+  height: 100%;
+  overflow: hidden;
 }
 </style>

@@ -8,7 +8,7 @@ import Question from "../../components/Question.vue";
 <template>
   <div style="height: 100%; width: 100%">
     <el-container>
-      <el-header height="80px">
+      <el-header height="60px">
         <TitleBar />
       </el-header>
       <el-container>
