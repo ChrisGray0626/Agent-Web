@@ -1,13 +1,14 @@
+
 <template>
   <div class="container" id="container"></div>
 </template>
 <script setup lang="ts">
-import LogicFlow, { Definition } from "@logicflow/core";
+import LogicFlow, {Definition} from "@logicflow/core";
 import "@logicflow/core/dist/style/index.css";
-import { Control } from "@logicflow/extension";
+import {Control} from "@logicflow/extension";
 import "@logicflow/extension/lib/style/index.css";
 
-import { onMounted } from "vue";
+import {onMounted} from "vue";
 
 import Dagre from "./dagre.ts";
 import Node from "./node.ts";
@@ -108,7 +109,6 @@ onMounted(() => {
     // TODO width and height
     // width: 800,
     // height: 600,
-    grid: true,
     plugins: [Control, Dagre],
   });
 
