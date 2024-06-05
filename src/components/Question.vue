@@ -12,7 +12,7 @@ const { task } = storeToRefs(dialogueStore);
     <el-input
       v-model="task"
       placeholder="Type Something"
-      @change="dialogueStore.$reset"
+      @change="dialogueStore.request"
     >
       <template #suffix>
         <el-button :icon="Promotion" />

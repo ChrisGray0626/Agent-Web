@@ -10,7 +10,7 @@ const { dialogue } = dialogueStore;
     <template v-for="item in dialogue">
       <div class="bubble">{{ item.question }}</div>
       <div class="bubble">
-        <Workflow />
+        <Workflow :id="item.id" />
       </div>
     </template>
   </div>
