@@ -8,7 +8,7 @@ interface Dialogue {
 
 export const useDialogueStore = defineStore("dialogue", () => {
   const task = ref<string>("");
-  const dialogue = ref<Dialogue[]>([] as Dialogue[]);
+  const dialogue = ref<Dialogue[]>([{ question: "May I?", answer: "Yes." }]);
 
   function $reset() {
     dialogue.value.push({

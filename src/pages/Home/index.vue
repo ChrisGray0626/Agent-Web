@@ -1,22 +1,22 @@
 <script lang="ts" setup>
-import CenterBox from "/src/components/CenterBox.vue";
-import TitleBar from "/src/components/TitleBar.vue";
-import LeftBox from "/src/components/LeftBox.vue";
-import Question from "../../components/Question.vue";
+import TopBox from "@/pages/Home/components/TopBox.vue";
+import LeftBox from "@/pages/Home/components/LeftBox.vue";
+import RightBox from "@/pages/Home/components/RightBox.vue";
+import Question from "@/components/Question.vue";
 </script>
 
 <template>
   <div style="height: 100%; width: 100%">
     <el-container>
       <el-header height="60px">
-        <TitleBar />
+        <TopBox />
       </el-header>
       <el-container>
-        <el-aside>
+        <el-aside width="800px">
           <LeftBox />
         </el-aside>
         <el-main>
-          <CenterBox />
+          <RightBox />
           <Question />
         </el-main>
       </el-container>

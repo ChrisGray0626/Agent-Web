@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { Promotion } from "@element-plus/icons-vue";
-import { useDialogueStore } from "../stores/dialogue";
+import { useDialogueStore } from "../store/dialogue";
 import { storeToRefs } from "pinia";
 
 const dialogueStore = useDialogueStore();

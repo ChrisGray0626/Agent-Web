@@ -4,7 +4,7 @@
   <div class="container">
     <div class="title">
       Task Name
-      <img src="../assets/task-rename.svg" />
+      <img src="@/assets/task-rename.svg" />
     </div>
     <button>+ New Task</button>
   </div>
@@ -15,7 +15,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  // width: 100%;
   height: 100%;
   background-color: #fff;
   .title {

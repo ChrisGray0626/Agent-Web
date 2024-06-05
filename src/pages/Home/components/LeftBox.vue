@@ -1,5 +1,6 @@
 <script lang="ts" setup>
-import { useDialogueStore } from "../stores/dialogue";
+import { useDialogueStore } from "@/store/dialogue.ts";
+import Workflow from "@/components/Workflow.vue";
 const dialogueStore = useDialogueStore();
 const { dialogue } = dialogueStore;
 </script>
@@ -8,7 +9,9 @@ const { dialogue } = dialogueStore;
   <div class="container">
     <template v-for="item in dialogue">
       <div class="bubble">{{ item.question }}</div>
-      <div class="bubble">{{ item.answer }}</div>
+      <div class="bubble">
+        <Workflow />
+      </div>
     </template>
   </div>
 </template>
@@ -29,6 +32,9 @@ const { dialogue } = dialogueStore;
     box-shadow: 0px 0px 2px 1px rgba(black, 0.2);
     border-radius: 10px;
     color: grey;
+    &:nth-child(2n) {
+      height: 400px;
+    }
   }
 }
 </style>
