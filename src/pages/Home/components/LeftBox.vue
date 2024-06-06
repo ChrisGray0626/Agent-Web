@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { useDialogueStore } from "@/store/dialogue.ts";
 import Workflow from "@/components/Workflow.vue";
+import {GRAPH_DATA_EXAMPLE} from "@/constant";
 const dialogueStore = useDialogueStore();
 const { dialogue } = dialogueStore;
 </script>
@@ -10,7 +11,7 @@ const { dialogue } = dialogueStore;
     <template v-for="item in dialogue">
       <div class="bubble">{{ item.question }}</div>
       <div class="bubble">
-        <Workflow :id="item.id" />
+        <Workflow :id="item.id" :graph-data="GRAPH_DATA_EXAMPLE"/>
       </div>
     </template>
   </div>
