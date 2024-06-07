@@ -57,3 +57,78 @@ export const GRAPH_DATA_EXAMPLE = {
         },
     ],
 }
+
+// export const BREAKDOWN_JSON_EXAMPLE = {
+//     id: "Calculation of Flood Affected Area",
+//     label: "Calculation of Flood Affected Area",
+//     required_data: "Remote sensing images before and after regional floods",
+//     children: [
+//         {
+//             id: "Calculating NDWI",
+//             label:
+//                 "Calculating NDWI from remote sensing images before and after floods",
+//             Toolset: "Raster Analysis",
+//             tool: "Raster Calculator",
+//         },
+//         {
+//             id: "Extracting Water Body Range",
+//             label:
+//                 "Extract the part with NDWI value greater than 0 as the water body range",
+//             Toolset: "Raster Analysis",
+//             tool: "Raster Calculator",
+//         },
+//         {
+//             id: "Raster to Vector",
+//             label:
+//                 "Convert the extracted raster water body into a vector",
+//             Toolset: "GDAL - Raster Conversion",
+//             tool: "Polygonize (Raster to Vector)",
+//         },
+//         {
+//             id: "Subtracting Vectors",
+//             label:
+//                 "Subtracting the vectors of the front and back water bodies to obtain the flood area",
+//             Toolset: "Vector Analysis",
+//             tool: "Difference",
+//         },
+//         {
+//             id: "Calculating Area",
+//             label: "Calculate the area of the flood-affected region",
+//             Toolset: "Vector Analysis",
+//             tool: "Calculate Geometry Attributes",
+//         },
+//     ],
+// }
+
+export const BREAKDOWN_JSON_EXAMPLE = {
+    id: 'sub1',
+    label: 'sub1',
+    children: [
+        {
+            id: 'subTree1',
+            label: 'subTree1',
+            children: [
+                {
+                    id: 'subTree1-1',
+                    label: 'subTree1-1',
+                    // children: [
+                    //     {
+                    //         id: 'subTree1-1-1',
+                    //     },
+                    //     {
+                    //         id: 'subTree1-1-2',
+                    //     }
+                    // ]
+                },
+                {
+                    id: 'subTree1-2',
+                    label: 'subTree1-2',
+                }
+            ]
+        },
+        {
+            id: 'subTree2',
+            label: 'subTree2',
+        }
+    ]
+};
