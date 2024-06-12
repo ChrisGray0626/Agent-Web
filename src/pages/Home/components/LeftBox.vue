@@ -1,10 +1,13 @@
 <script lang="ts" setup>
 import {useDialogueStore} from "@/store/dialogue.ts";
 import BreakDownChart from "@/components/BreakDownChart.vue";
-import {GRAPH_DATA_EXAMPLE} from "@/constant";
+import {BREAKDOWN_JSON_EXAMPLE} from "@/constant";
+import {treeJson2Graph} from "@/util/graphUtil.ts";
 
 const dialogueStore = useDialogueStore();
 const { dialogue } = dialogueStore;
+
+const breakdownGraphData = treeJson2Graph(BREAKDOWN_JSON_EXAMPLE);
 </script>
 
 <template>
@@ -12,7 +15,7 @@ const { dialogue } = dialogueStore;
     <template v-for="item in dialogue">
       <div class="bubble">{{ item.question }}</div>
       <div class="bubble">
-        <BreakDownChart :id="item.id" :graph-data="GRAPH_DATA_EXAMPLE"/>
+        <BreakDownChart :id="item.id" :graph-data="breakdownGraphData"/>
       </div>
     </template>
   </div>
