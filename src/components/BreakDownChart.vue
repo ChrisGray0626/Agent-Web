@@ -2,6 +2,7 @@
 import G6 from "@antv/g6";
 import {onMounted} from "vue";
 import {GraphData} from "@antv/g6-core/lib/types";
+import {nodeDefinition, nodeTypeName} from "@/util/nodeStyle.ts";
 
 const props = defineProps<{
   id: number;
@@ -11,6 +12,8 @@ const props = defineProps<{
 const graphNum = function () {
   return "mountNode" + props.id;
 };
+
+G6.registerNode(nodeTypeName, nodeDefinition);
 
 onMounted(() => {
   const graph = new G6.Graph({
@@ -27,7 +30,7 @@ onMounted(() => {
       // sortByCombo: true,
     },
     defaultNode: {
-      type: "rect",
+      type: nodeTypeName,
       anchorPoints: [
         [0.5, 0],
         [0.5, 1],
