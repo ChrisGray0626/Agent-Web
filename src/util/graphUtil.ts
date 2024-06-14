@@ -33,7 +33,7 @@ export function treeJson2Graph(treeJson: any) {
     }
 
     graphData.nodes.push(buildGraph(treeJson));
-    console.log(graphData);
+    // console.log(graphData);
     return graphData;
 }
 
