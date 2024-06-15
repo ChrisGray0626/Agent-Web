@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import {useDialogueStore} from "@/store/dialogue.ts";
-import BreakDownChart from "@/components/BreakDownChart.vue";
-import {BREAKDOWN_JSON_EXAMPLE_1} from "@/constant";
-import {treeJson2Graph} from "@/util/graphUtil.ts";
+import { useDialogueStore } from "@/store/dialogue.ts";
+import BreakdownChart from "@/components/BreakdownChart.vue";
+import { BREAKDOWN_JSON_EXAMPLE_1 } from "@/constant";
+import { treeJson2Graph } from "@/utils/graphUtil";
 
 const dialogueStore = useDialogueStore();
 const { dialogue } = dialogueStore;
@@ -15,7 +15,7 @@ const breakdownGraphData = treeJson2Graph(BREAKDOWN_JSON_EXAMPLE_1);
     <template v-for="item in dialogue">
       <div class="bubble">{{ item.question }}</div>
       <div class="bubble">
-        <BreakDownChart :id="item.id" :graph-data="breakdownGraphData"/>
+        <BreakdownChart :graph-id="item.id" :graph-data="breakdownGraphData" />
       </div>
     </template>
   </div>
@@ -38,7 +38,7 @@ const breakdownGraphData = treeJson2Graph(BREAKDOWN_JSON_EXAMPLE_1);
     border-radius: 10px;
     color: grey;
     &:nth-child(2n) {
-      height: 400px;
+      height: 650px;
     }
   }
 }
