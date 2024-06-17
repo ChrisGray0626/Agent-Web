@@ -1,12 +1,11 @@
-/<!--
+<!--
     @Description:
     @Author: Chris
     @Date: 2024/6/7
 -->
 <script setup lang="ts">
-
-import {GraphData} from "@antv/g6-core/lib/types";
-import {onMounted} from "vue";
+import { GraphData } from "@antv/g6-core/lib/types";
+import { onMounted } from "vue";
 import G6 from "@antv/g6";
 
 const props = defineProps<{

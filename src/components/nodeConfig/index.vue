@@ -1,100 +1,118 @@
 <script setup lang="ts">
-import {Plus} from "@element-plus/icons-vue";
-import {ref} from "vue";
+import { reactive, ref } from "vue";
+import { FormInstance } from "element-plus";
 
-const inputs = ref([
-  {
-    name: "",
-    value: ""
-  }
-])
+const formRef = ref<FormInstance>();
+// do not use same name with ref
+const form = reactive({
+  name: "",
+  description: "",
+  domains: [
+    {
+      key: 1,
+      value: "",
+    },
+  ],
+  email: "",
+  input: [
+    {
+      key: "ABC",
+      value: "123",
+    },
+    {
+      key: "ABC",
+      value: "123",
+    },
+    {
+      key: "ABC",
+      value: "123",
+    },
+  ],
+  output: [
+    {
+      key: "ABC",
+      value: "123",
+    },
+    {
+      key: "ABC",
+      value: "123",
+    },
+    {
+      key: "ABC",
+      value: "123",
+    },
+  ],
+});
 
-const outputs = ref([
-  {
-    name: "",
-    value: ""
-  }
-])
-
-function addInput() {
-  inputs.value.push({
-    name: "",
-    value: ""
-  })
-}
-
-function addOutput() {
-  outputs.value.push({
-    name: "",
-    value: ""
-  })
-}
+const onAddInput = () => {
+  form.input.push({
+    key: "",
+    value: "",
+  });
+};
+const onAddOutput = () => {
+  form.output.push({
+    key: "",
+    value: "",
+  });
+};
 </script>
 <template>
-  <div class="container">
-    <div class="inputText">
-      <el-text size="large" class="text">输入</el-text>
-      <el-icon color="#1511FA" size="14" class="icon" @click="addInput">
-        <Plus/>
-      </el-icon>
-    </div>
-    <div>
-      <el-row>
-        <el-col :span="12">
-          <el-text>Name</el-text>
-        </el-col>
-        <el-col :span="12">
-          <el-text>Value</el-text>
-        </el-col>
-      </el-row>
-    </div>
-    <div>
-      <div class="inputBox">
-        <div v-for="item in inputs" :key="item.name">
-          <el-row>
-            <el-col :span="11">
-              <el-input v-model="item.name" class="input"></el-input>
-            </el-col>
-            <el-col :span="1"/>
-            <el-col :span="12">
-              <el-input v-model="item.value" class="input"></el-input>
-            </el-col>
-          </el-row>
-        </div>
-      </div>
-    </div>
-    <div class="inputText">
-      <el-text size="large" class="text">输出</el-text>
-      <el-icon color="#1511FA" size="14" class="icon" @click="addOutput">
-        <Plus/>
-      </el-icon>
-    </div>
-    <div>
-      <el-row>
-        <el-col :span="12">
-          <el-text>Name</el-text>
-        </el-col>
-        <el-col :span="12">
-          <el-text>Value</el-text>
-        </el-col>
-      </el-row>
-    </div>
-    <div>
-      <div class="inputBox">
-        <div v-for="item in outputs" :key="item.name">
-          <el-row>
-            <el-col :span="11">
-              <el-input v-model="item.name" class="input"></el-input>
-            </el-col>
-            <el-col :span="1"/>
-            <el-col :span="12">
-              <el-input v-model="item.value" class="input"></el-input>
-            </el-col>
-          </el-row>
-        </div>
-      </div>
-    </div>
-  </div>
+  <el-form
+    ref="formRef"
+    :model="form"
+    label-position="top"
+    style="margin: 20px"
+  >
+    <el-form-item label="Task name">
+      <el-input v-model="form.name" />
+    </el-form-item>
+    <el-form-item label="Task description">
+      <el-input v-model="form.description" />
+    </el-form-item>
+    <el-form-item label="Input">
+      <el-table :data="form.input">
+        <el-table-column header-align="center" prop="key" label="key">
+          <template #default="scope">
+            <el-form-item>
+              <el-input v-model="scope.row.key" />
+            </el-form-item>
+          </template>
+        </el-table-column>
+        <el-table-column header-align="center" prop="value" label="value">
+          <template #default="scope">
+            <el-form-item>
+              <el-input v-model="scope.row.value" />
+            </el-form-item>
+          </template>
+        </el-table-column>
+      </el-table>
+    </el-form-item>
+    <el-form-item>
+      <el-button style="width: 100%" @click="onAddInput"> Add Item </el-button>
+    </el-form-item>
+    <el-form-item label="Output">
+      <el-table :data="form.output">
+        <el-table-column header-align="center" prop="key" label="key">
+          <template #default="scope">
+            <el-form-item>
+              <el-input v-model="scope.row.key" />
+            </el-form-item>
+          </template>
+        </el-table-column>
+        <el-table-column header-align="center" prop="value" label="value">
+          <template #default="scope">
+            <el-form-item>
+              <el-input v-model="scope.row.value" />
+            </el-form-item>
+          </template>
+        </el-table-column>
+      </el-table>
+    </el-form-item>
+    <el-form-item>
+      <el-button style="width: 100%" @click="onAddOutput"> Add Item </el-button>
+    </el-form-item>
+  </el-form>
 </template>
 
 <style scoped lang="less">
