@@ -1,4 +1,4 @@
-export const GRAPH_DATA_EXAMPLE = {
+export const WORKFLOW_JSON_EXAMPLE = {
   nodes: [
     {
       id: "node_id_1_1",
@@ -33,7 +33,7 @@ export const GRAPH_DATA_EXAMPLE = {
     {
       source: "node_id_1_1",
       target: "node_id_2_1",
-      sourceAnchor: 1,
+      // sourceAnchor: 1,
     },
     {
       source: "node_id_1_1",
@@ -57,6 +57,51 @@ export const GRAPH_DATA_EXAMPLE = {
     },
   ],
 };
+
+export const WORKFLOW_DATA_EXAMPLE_1 = [
+  {
+    name: "Calculating NDWI from remote sensing images before and after floods",
+    tool: "Raster Calculator",
+    args: [
+      {
+        name: "input_1",
+        type: "string",
+        description: "description_1",
+      },
+      {
+        name: "input_2",
+        type: "string",
+        description: "description_2",
+      },
+      {
+        name: "output_3",
+        type: "string",
+        description: "description_3",
+      },
+    ]
+  },
+  {
+    name: "Extract the part with NDWI value greater than 0 as the water body range",
+    tool: "Difference",
+    args: [
+      {
+        name: "input_1",
+        type: "string",
+        description: "description_1",
+      },
+      {
+        name: "input_2",
+        type: "string",
+        description: "description_2",
+      },
+      {
+        name: "output_3",
+        type: "string",
+        description: "description_3",
+      },
+    ]
+  }
+]
 
 export const BREAKDOWN_JSON_EXAMPLE = {
   label: "Calculation of Flood Affected Area",

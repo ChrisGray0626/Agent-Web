@@ -4,24 +4,21 @@
     @Date: 2024/6/7
 -->
 <script setup lang="ts">
-import { GraphData } from "@antv/g6-core/lib/types";
-import { onMounted } from "vue";
+import {GraphData} from "@antv/g6-core/lib/types";
+import {onMounted} from "vue";
 import G6 from "@antv/g6";
 
 const props = defineProps<{
-  id: number;
   graphData: GraphData;
 }>();
 
-const graphNum = function () {
-  return "mountNode" + props.id;
-};
+const CONTAINER_ID = "mountNode";
 
 onMounted(() => {
   const graph = new G6.Graph({
-    container: graphNum(),
+    container: CONTAINER_ID,
     fitCenter: true,
-    fitView: true,
+    // fitView: true,
     layout: {
       type: "dagre",
       nodesep: 30,
@@ -47,14 +44,14 @@ onMounted(() => {
       },
     },
   });
-
+  // TODO 注册 behavior
   graph.data(props.graphData);
   graph.render();
 });
 </script>
 
 <template>
-  <div :id="graphNum()"></div>
+  <div :id=CONTAINER_ID></div>
 </template>
 
 <style lang="less" scoped>
