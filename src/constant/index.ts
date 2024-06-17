@@ -106,34 +106,41 @@ export const WORKFLOW_DATA_EXAMPLE_1 = [
 export const BREAKDOWN_JSON_EXAMPLE = {
   label: "Calculation of Flood Affected Area",
   required_data: "Remote sensing images before and after regional floods",
+  color: "#5B8FF9",
+  type: "rootNode",
   children: [
     {
       label:
         "Calculating NDWI from remote sensing images before and after floods",
       Toolset: "Raster Analysis",
       tool: "Raster Calculator",
+      color: "#F6BD16",
     },
     {
       label:
         "Extract the part with NDWI value greater than 0 as the water body range",
       Toolset: "Raster Analysis",
       tool: "Raster Calculator",
+      color: "#5AD8A6",
     },
     {
       label: "Convert the extracted raster water body into a vector",
       Toolset: "GDAL - Raster Conversion",
       tool: "Polygonize (Raster to Vector)",
+      color: "#5AD8A6",
     },
     {
       label:
         "Subtracting the vectors of the front and back water bodies to obtain the flood area",
       Toolset: "Vector Analysis",
       tool: "Difference",
+      color: "#5AD8A6",
     },
     {
       label: "Calculate the area of the flood-affected region",
       Toolset: "Vector Analysis",
       tool: "Calculate Geometry Attributes",
+      color: "#5D7092",
     },
   ],
 };

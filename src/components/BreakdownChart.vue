@@ -6,8 +6,8 @@ import {
   jsxNode as jsxNodeConfig,
   treeNode as treeNodeConfig,
 } from "@/utils/nodeConfig";
-import { BREAKDOWN_JSON_EXAMPLE_1 } from "@/constant";
 import { indentedEdge as indentedEdgeConfig } from "@/utils/edgeConfig";
+import { activateNodeBehaviorConfig } from "@/utils/behaviorConfig.ts";
 
 const props = defineProps<{
   graphId: number;
@@ -22,6 +22,7 @@ G6.registerNode("rect-jsx", jsxNodeConfig);
 G6.registerNode("rootNode", rootNodeConfig, "rect");
 G6.registerNode("treeNode", treeNodeConfig);
 G6.registerEdge("indentedEdge", indentedEdgeConfig, "polyline");
+G6.registerBehavior("activate-node", activateNodeBehaviorConfig);
 
 onMounted(() => {
   const tree = new G6.TreeGraph({
@@ -32,6 +33,9 @@ onMounted(() => {
       type: "indented",
       isHorizontal: true,
       indent: 40,
+    },
+    modes: {
+      default: ["activate-node"],
     },
     defaultEdge: {
       type: "indentedEdge",
@@ -44,7 +48,7 @@ onMounted(() => {
       type: "treeNode",
     },
   });
-  tree.data(BREAKDOWN_JSON_EXAMPLE_1);
+  tree.data(props.graphData);
   tree.render();
 });
 </script>

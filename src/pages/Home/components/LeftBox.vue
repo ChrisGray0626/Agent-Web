@@ -1,13 +1,12 @@
 <script lang="ts" setup>
 import { useDialogueStore } from "@/store/dialogue.ts";
 import BreakdownChart from "@/components/BreakdownChart.vue";
-import { BREAKDOWN_JSON_EXAMPLE_1 } from "@/constant";
-import { treeJson2Graph } from "@/utils/graphUtil";
+import { BREAKDOWN_JSON_EXAMPLE } from "@/constant";
 
 const dialogueStore = useDialogueStore();
 const { dialogue } = dialogueStore;
 
-const breakdownGraphData = treeJson2Graph(BREAKDOWN_JSON_EXAMPLE_1);
+const breakdownGraphData = BREAKDOWN_JSON_EXAMPLE;
 </script>
 
 <template>

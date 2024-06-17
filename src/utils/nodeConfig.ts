@@ -102,13 +102,12 @@ export const treeNode: ShapeOptions = {
         y,
         textAlign: "left",
         textBaseline: "top",
-        // fontFamily: "PingFangSC-Regular",
+        cursor: "pointer",
         fill: "#666",
       },
       name: "name-label-shape",
     });
-    const textWidth = group.getBBox().width;
-    width = textWidth;
+    width = group.getBBox().width;
 
     group.addShape("path", {
       attrs: {
@@ -117,7 +116,7 @@ export const treeNode: ShapeOptions = {
           ["L", width + itemPadding, 0],
         ],
         stroke: cfg.color,
-        lineWidth: 2,
+        lineWidth: 3,
         // x,
         // width,
       },

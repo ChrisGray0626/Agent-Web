@@ -4,8 +4,8 @@
     @Date: 2024/6/7
 -->
 <script setup lang="ts">
-import {GraphData} from "@antv/g6-core/lib/types";
-import {onMounted} from "vue";
+import { GraphData } from "@antv/g6-core/lib/types";
+import { onMounted } from "vue";
 import G6 from "@antv/g6";
 
 const props = defineProps<{
@@ -28,8 +28,19 @@ onMounted(() => {
       // align: "DR",
       // sortByCombo: true,
     },
+    modes: {
+      default: ["activate-node"],
+    },
     defaultNode: {
       type: "rect",
+      style: {
+        cursor: "pointer",
+      },
+      labelCfg: {
+        style: {
+          cursor: "pointer",
+        },
+      },
       anchorPoints: [
         [0.5, 0],
         [0.5, 1],
@@ -44,14 +55,13 @@ onMounted(() => {
       },
     },
   });
-  // TODO 注册 behavior
   graph.data(props.graphData);
   graph.render();
 });
 </script>
 
 <template>
-  <div :id=CONTAINER_ID></div>
+  <div :id="CONTAINER_ID"></div>
 </template>
 
 <style lang="less" scoped>
