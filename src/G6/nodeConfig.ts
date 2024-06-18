@@ -1,5 +1,5 @@
 import { ShapeDefine, ShapeOptions } from "@antv/g6";
-import { fittingString } from "./graphUtil";
+import { fittingString } from "../utils/graphUtil.ts";
 
 /**
  * @Description: G6 Node Style

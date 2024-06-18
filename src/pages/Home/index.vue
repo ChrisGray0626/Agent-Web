@@ -13,14 +13,14 @@ import NodeConfig from "@/components/nodeConfig/index.vue";
         <TopBox />
       </el-header>
       <el-container>
-        <el-aside width="25%">
+        <el-aside width="30%">
           <LeftBox />
         </el-aside>
         <el-main>
           <RightBox />
           <Question />
         </el-main>
-        <el-aside width="25%">
+        <el-aside width="30%">
           <NodeConfig />
         </el-aside>
       </el-container>

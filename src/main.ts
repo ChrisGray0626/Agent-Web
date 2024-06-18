@@ -5,6 +5,10 @@ import ElementPlus from "element-plus";
 import "element-plus/dist/index.css";
 import * as ElementPlusIconsVue from "@element-plus/icons-vue";
 import pinia from "./store";
+import { G6Register } from "@/G6";
+
+// G6 registration
+G6Register();
 
 const app = createApp(App);
 

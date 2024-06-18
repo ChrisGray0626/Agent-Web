@@ -19,6 +19,7 @@ onMounted(() => {
     container: CONTAINER_ID,
     fitCenter: true,
     // fitView: true,
+    // fitViewPadding: "200px",
     layout: {
       type: "dagre",
       nodesep: 30,
@@ -29,7 +30,7 @@ onMounted(() => {
       // sortByCombo: true,
     },
     modes: {
-      default: ["activate-node"],
+      default: ["activate-node", "drag-canvas"],
     },
     defaultNode: {
       type: "rect",
