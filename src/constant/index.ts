@@ -78,7 +78,7 @@ export const WORKFLOW_DATA_EXAMPLE_1 = [
         type: "string",
         description: "description_3",
       },
-    ]
+    ],
   },
   {
     name: "Extract the part with NDWI value greater than 0 as the water body range",
@@ -99,9 +99,9 @@ export const WORKFLOW_DATA_EXAMPLE_1 = [
         type: "string",
         description: "description_3",
       },
-    ]
-  }
-]
+    ],
+  },
+];
 
 export const BREAKDOWN_JSON_EXAMPLE = {
   label: "Calculation of Flood Affected Area",
@@ -184,6 +184,62 @@ export const BREAKDOWN_JSON_EXAMPLE_1 = {
       id: "subTree2",
       label: "subTree2",
       color: "#5D7092",
+    },
+  ],
+};
+
+export const JOB_EXAMPLE = {
+  task: "Calculation of Flood Affected Area",
+  subtasks: [
+    {
+      task: "Calculating NDWI from remote sensing images before and after floods",
+      subtasks: [],
+      toolName: "Raster Calculator",
+      toolId: "1",
+    },
+    {
+      task: "Extract the part with NDWI value greater than 0 as the water body range",
+      subtasks: [
+        {
+          task: "Calculating NDWI from remote sensing images before and after floods",
+          subtasks: [],
+          toolName: "Raster Calculator",
+          toolId: "1",
+        },
+        {
+          task: "Calculating NDWI from remote sensing images before and after floods",
+          subtasks: [],
+          toolName: "Raster Calculator",
+          toolId: "1",
+        },
+      ],
+      toolName: "Raster Calculator",
+      toolId: "2",
+    },
+  ],
+  toolId: "",
+  toolName: "",
+};
+
+export const TOOL_EXAMPLE = {
+  id: "1",
+  name: "Raster Calculator",
+  description: "Calculate the raster.",
+  args: [
+    {
+      name: "input_1",
+      type: "string",
+      description: "description_1",
+    },
+    {
+      name: "input_2",
+      type: "string",
+      description: "description_2",
+    },
+    {
+      name: "output_3",
+      type: "string",
+      description: "description_3",
     },
   ],
 };

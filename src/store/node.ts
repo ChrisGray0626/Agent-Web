@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { reactive } from "vue";
+import { reactive, ref } from "vue";
 
 type Node = {
   name: string;
@@ -16,16 +16,17 @@ export const useNodeStore = defineStore("node", () => {
     output: [],
   });
 
+  let configDisplay = ref(false);
+
   function changeData(nodeConfig: Node) {
     currentNode.name = nodeConfig.name;
     currentNode.description = nodeConfig.description;
-    if (nodeConfig.input) {
-      currentNode.input = nodeConfig.input;
-    }
-    if (nodeConfig.output) {
-      currentNode.output = nodeConfig.output;
-    }
-    console.log(currentNode);
+    currentNode.input = nodeConfig.input;
+    currentNode.output = nodeConfig.output;
+    configDisplay.value = true;
+  }
+  function setConfigDisplay() {
+    configDisplay.value = false;
   }
   function onDeleteItem(tableRef: "input" | "output", index: number) {
     currentNode[tableRef].splice(index, 1);
@@ -42,5 +43,13 @@ export const useNodeStore = defineStore("node", () => {
       value: "",
     });
   }
-  return { currentNode, changeData, onDeleteItem, onAddInput, onAddOutput };
+  return {
+    currentNode,
+    configDisplay,
+    changeData,
+    setConfigDisplay,
+    onDeleteItem,
+    onAddInput,
+    onAddOutput,
+  };
 });

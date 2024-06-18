@@ -1,12 +1,13 @@
 <script lang="ts" setup>
 import { useDialogueStore } from "@/store/dialogue.ts";
 import BreakdownChart from "@/components/BreakdownChart.vue";
-import { BREAKDOWN_JSON_EXAMPLE_1 } from "@/constant";
+import { JOB_EXAMPLE } from "@/constant";
+import { JobData2Tree } from "@/utils/graphUtil.ts";
 
 const dialogueStore = useDialogueStore();
 const { dialogue } = dialogueStore;
 
-const breakdownGraphData = BREAKDOWN_JSON_EXAMPLE_1;
+const breakdownGraphData = JobData2Tree(JOB_EXAMPLE);
 </script>
 
 <template>
@@ -37,7 +38,7 @@ const breakdownGraphData = BREAKDOWN_JSON_EXAMPLE_1;
     border-radius: 10px;
     color: grey;
     &:nth-child(2n) {
-      height: 650px;
+      height: 350px;
     }
   }
 }

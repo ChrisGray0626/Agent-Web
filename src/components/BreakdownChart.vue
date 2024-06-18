@@ -1,25 +1,43 @@
 <script lang="ts" setup>
-import G6, { GraphData } from "@antv/g6";
+import G6 from "@antv/g6";
 import { onMounted } from "vue";
+import { TreeNode } from "@/utils/graphUtil.ts";
+import { fittingString } from "@/G6";
 
 const props = defineProps<{
   graphId: number;
-  graphData: GraphData;
+  graphData: TreeNode;
 }>();
 
-const graphNum = function () {
+const getGraphNum = function () {
   return "mountNode" + props.graphId;
+};
+
+const getNodeLabelFitting = function (data: TreeNode) {
+  const { label, children, toolId, toolName } = data;
+  const newData: TreeNode = {
+    label: fittingString(label, 200, 10),
+    toolId,
+    toolName,
+    children: [],
+  };
+  if (children && children.length >= 1) {
+    for (let i = 0; i < children.length; i++) {
+      newData.children[i] = getNodeLabelFitting(children[i]);
+    }
+  }
+  return newData;
 };
 
 onMounted(() => {
   const tree = new G6.TreeGraph({
-    container: graphNum(),
+    container: getGraphNum(),
     fitView: true,
     fitCenter: true,
     layout: {
       type: "indented",
-      isHorizontal: true,
-      indent: 40,
+      // isHorizontal: true,
+      indent: 30,
     },
     modes: {
       default: ["activate-node", "drag-canvas"],
@@ -27,21 +45,34 @@ onMounted(() => {
     defaultEdge: {
       type: "indentedEdge",
       style: {
-        lineWidth: 2,
+        stroke: "#656565",
         radius: 16,
       },
     },
     defaultNode: {
-      type: "treeNode",
+      style: {
+        cursor: "pointer",
+      },
+      labelCfg: {
+        position: "right",
+        style: {
+          cursor: "pointer",
+        },
+      },
+      anchorPoints: [
+        [0.5, 1],
+        [0, 0.5],
+      ],
     },
   });
-  tree.data(props.graphData);
+
+  tree.data(getNodeLabelFitting(props.graphData));
   tree.render();
 });
 </script>
 
 <template>
-  <div :id="graphNum()"></div>
+  <div :id="getGraphNum()"></div>
 </template>
 
 <style lang="less" scoped>

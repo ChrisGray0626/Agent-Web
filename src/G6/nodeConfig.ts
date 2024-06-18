@@ -1,5 +1,4 @@
-import { ShapeDefine, ShapeOptions } from "@antv/g6";
-import { fittingString } from "../utils/graphUtil.ts";
+import { ShapeOptions } from "@antv/g6";
 
 /**
  * @Description: G6 Node Style
@@ -11,66 +10,6 @@ const labelStyle = {
   itemPadding: 5,
 };
 
-export const jsxNode: ShapeDefine = (cfg) => `
-  <group>
-    <rect style={{ width: 150, height: 20, fill: #2196F3, radius: [6, 6, 0, 0] }}>
-      <text style={{ marginTop: 2, marginLeft: 75, textAlign: 'center', fontWeight: 'bold', fill: '#fff' }}>${cfg.id}</text>
-    </rect>
-    <rect style={{ width: 150, height: 55, stroke: #2196F3, fill: #ffffff, radius: [0, 0, 6, 6] }}>
-      <text style={{ marginTop: 2, marginLeft: 2, fontSize: 10, fill: '#333' }}>描述: ${cfg.label}</text>
-    </rect>
-  </group>
-`;
-export const cardNode: ShapeOptions = {
-  options: {
-    anchorPoints: [
-      [0.5, 0],
-      [0.5, 1],
-    ],
-  },
-  draw(cfg, group) {
-    const keyShape = group.addShape("rect", {
-      attrs: {
-        width: 150,
-        height: 100,
-        radius: 5,
-        fill: "#c1cbd7",
-        shadowColor: "#656565",
-        shadowOffsetX: 5,
-        shadowOffsetY: 5,
-        shadowBlur: 15,
-      },
-      name: "card-rect",
-      draggable: true,
-    });
-    group.addShape("text", {
-      attrs: {
-        text: fittingString("ID: " + cfg.id, 140, 12),
-        x: 10,
-        y: 40,
-        textAlign: "left",
-        fill: "#5A4E52",
-        shadowOffsetX: 1,
-        shadowOffsetY: 1,
-      },
-      name: "card-id",
-    });
-    group.addShape("text", {
-      attrs: {
-        text: fittingString("Label: " + cfg.label, 140, 12),
-        textAlign: "left",
-        x: 10,
-        y: 70,
-        fill: "#0A0000",
-        shadowOffsetX: 1,
-        shadowOffsetY: 1,
-      },
-      name: "card-label",
-    });
-
-    return keyShape;
-  },
-};
 export const treeNode: ShapeOptions = {
   options: {
     style: {
