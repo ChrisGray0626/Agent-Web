@@ -1,32 +1,16 @@
 <script lang="ts" setup>
-import G6 from "@antv/g6";
+import G6, { TreeGraphData } from "@antv/g6";
 import { onMounted } from "vue";
-import { TreeNode } from "@/utils/graphUtil.ts";
-import { fittingString } from "@/G6";
+
+import { getNodeLabelFitting } from "@/G6/utils.ts";
 
 const props = defineProps<{
-  graphId: number;
-  graphData: TreeNode;
+  graphId: string;
+  graphData: TreeGraphData;
 }>();
 
 const getGraphNum = function () {
   return "mountNode" + props.graphId;
-};
-
-const getNodeLabelFitting = function (data: TreeNode) {
-  const { label, children, toolId, toolName } = data;
-  const newData: TreeNode = {
-    label: fittingString(label, 200, 10),
-    toolId,
-    toolName,
-    children: [],
-  };
-  if (children && children.length >= 1) {
-    for (let i = 0; i < children.length; i++) {
-      newData.children[i] = getNodeLabelFitting(children[i]);
-    }
-  }
-  return newData;
 };
 
 onMounted(() => {

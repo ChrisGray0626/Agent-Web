@@ -4,7 +4,6 @@ import { useNodeStore } from "@/store/node.ts";
 import pinia from "@/store";
 
 const nodeStore = useNodeStore(pinia);
-const { changeData } = nodeStore;
 
 export const activateNodeBehaviorConfig: BehaviorOption = {
   getEvents() {
@@ -15,7 +14,7 @@ export const activateNodeBehaviorConfig: BehaviorOption = {
   onNodeClick(evt: IG6GraphEvent) {
     const node = evt.item;
     // console.log(node?.getModel().label);
-    changeData({
+    nodeStore.changeData({
       name: node?.getModel().id!,
       description: node?.getModel().label as string,
       input: [],

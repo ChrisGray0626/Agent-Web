@@ -3,7 +3,7 @@
 <template>
   <div class="container">
     <div class="title">
-      Job Name
+      Session Name
       <!--      <img src="@/assets/task-rename.svg" />-->
     </div>
     <!--    <el-button>+ New Task</el-button>-->

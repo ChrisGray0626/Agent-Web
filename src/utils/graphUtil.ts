@@ -3,6 +3,8 @@
  * @Author: Chris
  * @Date: 2024/6/7
  */
+import { TreeGraphData } from "@antv/g6";
+import { GraphData } from "@antv/g6-core/lib/types";
 
 type Edge = {
   id: string;
@@ -19,16 +21,27 @@ type Job = {
   toolName: string;
   subtasks: Job[];
 };
-export type TreeNode = {
-  label: string;
-  toolId: string;
-  toolName: string;
-  children: TreeNode[];
-};
+// type Tool = {
+//   id: string;
+//   name: string;
+//   description: string;
+//   args: {
+//     name: string;
+//     type: string;
+//     description: string;
+//   }[];
+// };
+// type TreeNode = {
+//   label: string;
+//   toolId: string;
+//   toolName: string;
+//   children: TreeNode[];
+// };
 
-export function JobData2Tree(data: Job) {
+export function jobData2Tree(data: Job) {
   const { subtasks } = data;
-  const graphData: TreeNode = {
+  const graphData: TreeGraphData = {
+    id: generateId(),
     label: data.task,
     toolId: data.toolId,
     toolName: data.toolName,
@@ -36,10 +49,61 @@ export function JobData2Tree(data: Job) {
   };
   if (subtasks && subtasks.length > 0) {
     for (let i = 0; i < subtasks.length; i++) {
-      graphData.children.push(JobData2Tree(subtasks[i]));
+      graphData.children!.push(jobData2Tree(subtasks[i]));
     }
   }
   return graphData;
+}
+// function postorder(data: Object | TreeGraphData) {
+//   let newData: typeof data;
+//   function dfs(newData: typeof data) {
+//     if ("children" in newData && newData["children"] instanceof Array && newData["children"].length > 0) {
+//       for (let i = 0; i < newData.children.length; i++) {
+//         dfs(newData.children[i]);
+//       }
+//     } else {
+//       newData.
+//     }
+//   }
+// }
+
+export function jobData2Graph(data: Job) {
+  const graphData = jobData2Tree(data);
+  console.log(graphData);
+  const finalTaskList: GraphData = {
+    nodes: [],
+    edges: [],
+  };
+  function buildNode(nodes: TreeGraphData) {
+    const { id, label, children } = nodes;
+    const node = {
+      id,
+      label,
+    };
+    if (children && children.length > 0) {
+      children.forEach((child) => {
+        buildNode(child);
+      });
+    } else {
+      finalTaskList.nodes!.push(node);
+    }
+  }
+  function buildEdge(nodeData: GraphData) {
+    if (nodeData.nodes) {
+      for (let i = 1; i < nodeData.nodes.length; i++) {
+        finalTaskList.edges!.push({
+          id: generateId(),
+          source: nodeData.nodes[i - 1].id,
+          target: nodeData.nodes[i].id,
+        });
+      }
+    }
+  }
+  buildNode(graphData);
+  console.log(finalTaskList);
+  buildEdge(finalTaskList);
+
+  return finalTaskList;
 }
 
 /**
@@ -117,7 +181,7 @@ export function treeJson2Graph(treeJson: any) {
  * Generate a random id
  * @param length
  */
-function generateId(length: number = 6) {
+export function generateId(length: number = 6) {
   let result = "";
   const chars =
     "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";

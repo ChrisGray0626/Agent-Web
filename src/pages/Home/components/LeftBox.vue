@@ -1,21 +1,23 @@
 <script lang="ts" setup>
-import { useDialogueStore } from "@/store/dialogue.ts";
+import { useSessionStore } from "@/store/session.ts";
 import BreakdownChart from "@/components/BreakdownChart.vue";
 import { JOB_EXAMPLE } from "@/constant";
-import { JobData2Tree } from "@/utils/graphUtil.ts";
+import { jobData2Tree } from "@/utils/graphUtil.ts";
 
-const dialogueStore = useDialogueStore();
-const { dialogue } = dialogueStore;
+const sessionStore = useSessionStore();
 
-const breakdownGraphData = JobData2Tree(JOB_EXAMPLE);
+const breakdownGraphData = jobData2Tree(JOB_EXAMPLE);
 </script>
 
 <template>
   <div class="container">
-    <template v-for="item in dialogue">
+    <template v-for="item in sessionStore.session.chat">
       <div class="bubble">{{ item.question }}</div>
       <div class="bubble">
-        <BreakdownChart :graph-id="item.id" :graph-data="breakdownGraphData" />
+        <BreakdownChart
+          :graph-id="item.chatId"
+          :graph-data="breakdownGraphData"
+        />
       </div>
     </template>
   </div>

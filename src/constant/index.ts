@@ -192,7 +192,7 @@ export const JOB_EXAMPLE = {
   task: "Calculation of Flood Affected Area",
   subtasks: [
     {
-      task: "Calculating NDWI from remote sensing images before and after floods",
+      task: "1-1 Calculating NDWI from remote sensing images before and after floods",
       subtasks: [],
       toolName: "Raster Calculator",
       toolId: "1",
@@ -201,13 +201,13 @@ export const JOB_EXAMPLE = {
       task: "Extract the part with NDWI value greater than 0 as the water body range",
       subtasks: [
         {
-          task: "Calculating NDWI from remote sensing images before and after floods",
+          task: "2-1 Calculating NDWI from remote sensing images before and after floods",
           subtasks: [],
           toolName: "Raster Calculator",
           toolId: "1",
         },
         {
-          task: "Calculating NDWI from remote sensing images before and after floods",
+          task: "2-2 Calculating NDWI from remote sensing images before and after floods",
           subtasks: [],
           toolName: "Raster Calculator",
           toolId: "1",

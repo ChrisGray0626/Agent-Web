@@ -1,18 +1,16 @@
 <script lang="ts" setup>
 import { Promotion } from "@element-plus/icons-vue";
-import { useDialogueStore } from "../store/dialogue";
-import { storeToRefs } from "pinia";
+import { useSessionStore } from "../store/session.ts";
 
-const dialogueStore = useDialogueStore();
-const { task } = storeToRefs(dialogueStore);
+const sessionStore = useSessionStore();
 </script>
 
 <template>
   <div class="container">
     <el-input
-      v-model="task"
+      v-model="sessionStore.newChat.question"
       placeholder="Type Something"
-      @change="dialogueStore.request"
+      @change="sessionStore.chatted()"
     >
       <template #suffix>
         <el-button :icon="Promotion" />
