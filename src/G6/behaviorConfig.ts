@@ -17,8 +17,6 @@ export const activateNodeBehaviorConfig: BehaviorOption = {
     nodeStore.changeData({
       name: node?.getModel().id!,
       description: node?.getModel().label as string,
-      input: [],
-      output: [],
     });
   },
 };

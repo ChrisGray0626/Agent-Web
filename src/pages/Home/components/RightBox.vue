@@ -1,20 +1,17 @@
 <script lang="ts" setup>
 import WorkflowChart from "@/components/WorkflowChart.vue";
-import { jobData2Graph } from "@/utils/graphUtil.ts";
-import { JOB_EXAMPLE } from "@/constant";
 import NodeConfig from "@/components/nodeConfig/index.vue";
 import { useNodeStore } from "@/store/node.ts";
-
-// const workflowData = addItemId(WORKFLOW_DATA_EXAMPLE_1);
-const workflowGraphData = jobData2Graph(JOB_EXAMPLE);
+import { useSessionStore } from "@/store/session.ts";
 
 const nodeStore = useNodeStore();
+const sessionStore = useSessionStore();
 </script>
 
 <template>
   <div class="container">
-    <WorkflowChart :graph-data="workflowGraphData" />
-    <NodeConfig v-if="nodeStore.configDisplay" />
+    <WorkflowChart v-if="sessionStore.session.chat.length !== 0" />
+    <NodeConfig v-show="nodeStore.configDisplay" />
   </div>
 </template>
 

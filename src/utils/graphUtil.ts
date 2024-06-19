@@ -6,22 +6,13 @@
 import { TreeGraphData } from "@antv/g6";
 import { GraphData } from "@antv/g6-core/lib/types";
 
-type Edge = {
-  id: string;
-  source: string;
-  target: string;
-};
-type Node = {
-  id: string;
-  label: string;
-};
-type Job = {
+export type Job = {
   task: string;
   toolId: string;
   toolName: string;
   subtasks: Job[];
 };
-// type Tool = {
+// export type Tool = {
 //   id: string;
 //   name: string;
 //   description: string;
@@ -54,22 +45,8 @@ export function jobData2Tree(data: Job) {
   }
   return graphData;
 }
-// function postorder(data: Object | TreeGraphData) {
-//   let newData: typeof data;
-//   function dfs(newData: typeof data) {
-//     if ("children" in newData && newData["children"] instanceof Array && newData["children"].length > 0) {
-//       for (let i = 0; i < newData.children.length; i++) {
-//         dfs(newData.children[i]);
-//       }
-//     } else {
-//       newData.
-//     }
-//   }
-// }
 
-export function jobData2Graph(data: Job) {
-  const graphData = jobData2Tree(data);
-  console.log(graphData);
+export function tree2Graph(treeData: TreeGraphData) {
   const finalTaskList: GraphData = {
     nodes: [],
     edges: [],
@@ -99,38 +76,10 @@ export function jobData2Graph(data: Job) {
       }
     }
   }
-  buildNode(graphData);
-  console.log(finalTaskList);
+  buildNode(treeData);
   buildEdge(finalTaskList);
 
   return finalTaskList;
-}
-
-/**
- * Convert tree json to graph data
- * @param data
- */
-export function workflowData2Graph(data: any) {
-  let graphData = {
-    nodes: [] as Node[],
-    edges: [] as Edge[],
-  };
-  graphData.nodes.push({
-    id: data[0].id,
-    label: data[0].tool,
-  });
-  for (let i = 1; i < data.length; i++) {
-    graphData.nodes.push({
-      id: data[i].id,
-      label: data[i].tool,
-    });
-    graphData.edges.push({
-      id: generateId(),
-      source: data[i - 1].id,
-      target: data[i].id,
-    });
-  }
-  return graphData;
 }
 
 /**
@@ -142,39 +91,6 @@ export function addItemId(data: {}[]) {
     ...item,
     id: generateId(),
   }));
-}
-
-export function treeJson2Graph(treeJson: any) {
-  let graphData = {
-    nodes: [] as Node[],
-    edges: [] as Edge[],
-  };
-
-  function buildGraph(nodeJson: any) {
-    const id = generateId();
-    const node = {
-      id: id,
-      label: nodeJson.label,
-    };
-    const children = nodeJson.children;
-    if (children && children.length > 0) {
-      children.forEach((child: any) => {
-        const childNode = buildGraph(child);
-        const edge = {
-          id: generateId(),
-          source: node.id,
-          target: childNode.id,
-        };
-        graphData.edges.push(edge);
-        graphData.nodes.push(childNode);
-      });
-    }
-    return node;
-  }
-
-  graphData.nodes.push(buildGraph(treeJson));
-  console.debug(graphData);
-  return graphData;
 }
 
 /**

@@ -1,6 +1,7 @@
 import { defineStore } from "pinia";
 import { reactive } from "vue";
 import { generateId } from "@/utils/graphUtil";
+import { useDataStore } from "@/store/data.ts";
 
 type Session = {
   sessionId: string;
@@ -13,6 +14,8 @@ type Session = {
 };
 
 export const useSessionStore = defineStore("session", () => {
+  const dataStore = useDataStore();
+
   const session = reactive<Session>({
     sessionId: generateId(),
     sessionName: "",
@@ -26,6 +29,7 @@ export const useSessionStore = defineStore("session", () => {
   });
 
   function chatted() {
+    if (Object.keys(dataStore.localData)) dataStore.getData();
     session.chat.push({ ...newChat });
     newChat.chatId = generateId();
     newChat.question = "";

@@ -1,12 +1,8 @@
 <script lang="ts" setup>
 import { useSessionStore } from "@/store/session.ts";
 import BreakdownChart from "@/components/BreakdownChart.vue";
-import { JOB_EXAMPLE } from "@/constant";
-import { jobData2Tree } from "@/utils/graphUtil.ts";
 
 const sessionStore = useSessionStore();
-
-const breakdownGraphData = jobData2Tree(JOB_EXAMPLE);
 </script>
 
 <template>
@@ -14,10 +10,7 @@ const breakdownGraphData = jobData2Tree(JOB_EXAMPLE);
     <template v-for="item in sessionStore.session.chat">
       <div class="bubble">{{ item.question }}</div>
       <div class="bubble">
-        <BreakdownChart
-          :graph-id="item.chatId"
-          :graph-data="breakdownGraphData"
-        />
+        <BreakdownChart :graph-id="item.chatId" />
       </div>
     </template>
   </div>

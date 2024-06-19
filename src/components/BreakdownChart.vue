@@ -1,13 +1,15 @@
 <script lang="ts" setup>
-import G6, { TreeGraphData } from "@antv/g6";
+import G6 from "@antv/g6";
 import { onMounted } from "vue";
 
 import { getNodeLabelFitting } from "@/G6/utils.ts";
+import { useDataStore } from "@/store/data.ts";
 
 const props = defineProps<{
   graphId: string;
-  graphData: TreeGraphData;
 }>();
+
+const dataStore = useDataStore();
 
 const getGraphNum = function () {
   return "mountNode" + props.graphId;
@@ -18,6 +20,7 @@ onMounted(() => {
     container: getGraphNum(),
     fitView: true,
     fitCenter: true,
+    animate: false,
     layout: {
       type: "indented",
       // isHorizontal: true,
@@ -50,7 +53,7 @@ onMounted(() => {
     },
   });
 
-  tree.data(getNodeLabelFitting(props.graphData));
+  tree.data(getNodeLabelFitting(dataStore.getTreeData));
   tree.render();
 });
 </script>

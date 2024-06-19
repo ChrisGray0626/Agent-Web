@@ -4,31 +4,19 @@
     @Date: 2024/6/7
 -->
 <script setup lang="ts">
-import { GraphData } from "@antv/g6-core/lib/types";
 import { onMounted } from "vue";
 import G6 from "@antv/g6";
-
-const props = defineProps<{
-  graphData: GraphData;
-}>();
+import { useDataStore } from "@/store/data.ts";
 
 const CONTAINER_ID = "mountNode";
+const dataStore = useDataStore();
 
 onMounted(() => {
   const graph = new G6.Graph({
     container: CONTAINER_ID,
     fitCenter: true,
-    // fitView: true,
-    // fitViewPadding: "200px",
     layout: {
       type: "dagre",
-      rankdir: "TB",
-      // nodesep: 30,
-      // ranksep: 20,
-      // preventOverlap: false,
-      // controlPoints: true,
-      // align: "DR",
-      // sortByCombo: true,
     },
     modes: {
       default: ["activate-node", "drag-canvas"],
@@ -57,7 +45,8 @@ onMounted(() => {
       },
     },
   });
-  graph.data(props.graphData);
+
+  graph.data(dataStore.getGraphData);
   graph.render();
 });
 </script>
