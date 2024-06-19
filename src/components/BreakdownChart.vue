@@ -53,7 +53,7 @@ onMounted(() => {
     },
   });
 
-  tree.data(getNodeLabelFitting(dataStore.getTreeData));
+  tree.data(getNodeLabelFitting(dataStore.getTreeData)); //TODO: display full content when mouse moves in
   tree.render();
 });
 </script>

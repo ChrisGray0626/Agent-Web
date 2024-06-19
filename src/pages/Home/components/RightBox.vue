@@ -10,6 +10,7 @@ const sessionStore = useSessionStore();
 
 <template>
   <div class="container">
+    <!--TODO: rendering base on current focused graph data instead of the length of that-->
     <WorkflowChart v-if="sessionStore.session.chat.length !== 0" />
     <NodeConfig v-show="nodeStore.configDisplay" />
   </div>
