@@ -4,9 +4,9 @@
     @Date: 2024/6/7
 -->
 <script setup lang="ts">
-import { onMounted } from "vue";
+import {onMounted} from "vue";
 import G6 from "@antv/g6";
-import { useDataStore } from "@/store/data.ts";
+import {useDataStore} from "@/store/data.ts";
 
 const CONTAINER_ID = "mountNode";
 const dataStore = useDataStore();
@@ -22,11 +22,11 @@ onMounted(() => {
       default: ["activate-node", "drag-canvas"],
     },
     defaultNode: {
-      type: "rect",
       style: {
         cursor: "pointer",
       },
       labelCfg: {
+        position: "right",
         style: {
           cursor: "pointer",
         },
