@@ -10,10 +10,11 @@ const props = defineProps<{
 const dataStore = useDataStore();
 
 const getGraphNum = function () {
-  return "mountNode" + props.graphId;
+  return "mountNode-" + props.graphId;
 };
 
 onMounted(() => {
+  console.log("breakdown");
   const tree = new G6.TreeGraph({
     container: getGraphNum(),
     fitView: true,

@@ -10,7 +10,10 @@ const sessionStore = useSessionStore();
 
 <template>
   <div class="container">
-    <WorkflowChart v-if="sessionStore.session.chat.length !== 0" />
+    <WorkflowChart
+      v-if="sessionStore.graphShow"
+      :graph-id="sessionStore.session.sessionId + '-workflow'"
+    />
     <NodeConfig v-show="nodeStore.configDisplay" />
   </div>
 </template>

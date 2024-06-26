@@ -8,12 +8,20 @@ import { onMounted } from "vue";
 import G6 from "@antv/g6";
 import { useDataStore } from "@/store/data.ts";
 
-const CONTAINER_ID = "mountNode";
+const props = defineProps<{
+  graphId: string;
+}>();
+
 const dataStore = useDataStore();
 
+const getGraphNum = function () {
+  return "mountNode-" + props.graphId;
+};
+
 onMounted(() => {
+  console.log("workflow");
   const graph = new G6.Graph({
-    container: CONTAINER_ID,
+    container: getGraphNum(),
     fitCenter: true,
     fitView: true,
     // fitViewPadding: 200,
@@ -59,7 +67,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div :id="CONTAINER_ID"></div>
+  <div :id="getGraphNum()"></div>
 </template>
 
 <style lang="less" scoped>

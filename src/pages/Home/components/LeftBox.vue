@@ -7,10 +7,12 @@ const sessionStore = useSessionStore();
 
 <template>
   <div class="container">
-    <template v-for="item in sessionStore.session.chat">
-      <div class="bubble">{{ item.question }}</div>
+    <template v-if="sessionStore.graphShow">
+      <div class="bubble">{{ sessionStore.session.question }}</div>
       <div class="bubble">
-        <BreakdownChart :graph-id="item.chatId" />
+        <BreakdownChart
+          :graph-id="sessionStore.session.sessionId + '-breakdown'"
+        />
       </div>
     </template>
   </div>
@@ -33,7 +35,7 @@ const sessionStore = useSessionStore();
     border-radius: 10px;
     color: grey;
     &:nth-child(2n) {
-      height: 350px;
+      height: 450px;
     }
   }
 }

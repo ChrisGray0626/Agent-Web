@@ -10,12 +10,13 @@ const sessionStore = useSessionStore();
 <template>
   <div class="container">
     <el-input
-      v-model="sessionStore.newChat.question"
+      v-model="sessionStore.session.question"
       placeholder="Type Something"
       @change="sessionStore.chatted()"
+      :disabled="sessionStore.graphShow"
     >
       <template #suffix>
-        <el-button :icon="Promotion" />
+        <el-button :icon="Promotion" :disabled="sessionStore.graphShow" />
       </template>
     </el-input>
   </div>
