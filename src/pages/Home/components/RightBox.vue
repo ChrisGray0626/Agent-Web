@@ -20,7 +20,7 @@ const sessionStore = useSessionStore();
 
 <style lang="less" scoped>
 .container {
-  height: 100%;
+  height: calc(100vh - 170px);
   overflow: hidden;
 }
 </style>

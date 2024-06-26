@@ -35,7 +35,7 @@ const sessionStore = useSessionStore();
     border-radius: 10px;
     color: grey;
     &:nth-child(2n) {
-      height: 450px;
+      height: calc(100vh - 170px);
     }
   }
 }

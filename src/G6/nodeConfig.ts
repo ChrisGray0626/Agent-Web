@@ -113,8 +113,8 @@ export const breakdownNode: ShapeOptions = {
     const r = 10;
     const keyShape = group.addShape("circle", {
       attrs: {
-        x: -r / 2,
-        y: -r / 2,
+        // x: -r / 2,
+        // y: -r / 2,
         r,
         stroke: "#5B8FF9",
         cursor: "pointer",
@@ -123,11 +123,11 @@ export const breakdownNode: ShapeOptions = {
     });
     group.addShape("text", {
       attrs: {
-        text: cfg.label,
+        text: textWrapping(cfg.label as string, 300),
         fill: "#000",
         fontSize: 12,
-        x: r,
-        y: -r / 2,
+        x: 2 * r,
+        // y: -r / 2,
         textAlign: "left",
         textBaseline: "middle",
         cursor: "pointer",
@@ -139,25 +139,16 @@ export const breakdownNode: ShapeOptions = {
   getAnchorPoints() {
     return [[0.5, 1]];
   },
-  afterDraw(cfg, group) {
-    const textShape = group?.find(
-      (element) => element.get("name") === "root-text-shape",
-    );
-    textShape?.attr({ text: textWrapping(cfg?.label as string) });
-  },
 };
 export const workflowNode: ShapeOptions = {
   draw(cfg, group) {
-    const size = 25;
-    // const s = new XMLSerializer().serializeToString(
-    //   import("@/assets/chip.svg"),
-    // );
+    const size = 48;
     const keyShape = group.addShape("rect", {
       attrs: {
         width: size,
         height: size,
-        x: -size / 2,
-        y: -size / 2,
+        // x: -size / 2,
+        // y: -size / 2,
         radius: 4,
         stroke: "#5A77C1",
         fill: "#D7DCF1",
@@ -166,18 +157,23 @@ export const workflowNode: ShapeOptions = {
       },
       name: "workflow-node-key-shape",
     });
-    // group.addShape("image", {
-    //   attrs: {
-    //     size,
-    //     img: `data:image/svg+xml;base64,${encodeURIComponent()}`,
-    //   },
-    // });
+    group.addShape("image", {
+      attrs: {
+        // x: -size / 2,
+        // y: -size / 2,
+        width: size,
+        height: size,
+        img: "https://i.imgur.com/O2p39SI.png",
+        cursor: "pointer",
+      },
+      name: "workflow-node-img-shape",
+    });
     group.addShape("text", {
       attrs: {
-        text: cfg.label,
+        text: textWrapping(cfg.label as string, 300),
         fill: "#000",
-        x: size / 2 + 5,
-        // y: -size / 2,
+        x: size * 1.5,
+        y: size / 2,
         fontSize: 12,
         textAlign: "left",
         textBaseline: "middle",
@@ -186,5 +182,11 @@ export const workflowNode: ShapeOptions = {
       name: "workflow-node-text-shape",
     });
     return keyShape;
+  },
+  getAnchorPoints() {
+    return [
+      [0.5, 0],
+      [0.5, 1],
+    ];
   },
 };
