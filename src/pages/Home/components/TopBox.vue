@@ -2,7 +2,7 @@
 
 <template>
   <div class="container">
-    <div class="title">Session Name</div>
+    <div class="title">AI GIS SYSTEM</div>
   </div>
 </template>
 

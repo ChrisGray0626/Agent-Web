@@ -3,7 +3,7 @@
  * @Author: Chris
  * @Date: 2024/6/7
  */
-import { TreeGraphData } from "@antv/g6";
+import G6, { TreeGraphData } from "@antv/g6";
 import { GraphData } from "@antv/g6-core/lib/types";
 
 export type Job = {
@@ -105,4 +105,38 @@ export function generateId(length: number = 6) {
     result += chars.charAt(Math.floor(Math.random() * chars.length));
   }
   return result;
+}
+
+export function textWrapping(
+  str: string,
+  maxWidth: number = 300,
+  fontSize: number = 12,
+) {
+  // const ellipsis = "...";
+  // const ellipsisLength = G6.Util.getTextSize(ellipsis, fontSize)[0];
+  let currentWidth = 0;
+  let res = "";
+  // let spaceIndex = 0;
+  const pattern = new RegExp("[\u4E00-\u9FA5]+"); // distinguish the Chinese characters and letters
+  let lastIndex = 0;
+  str.split("").forEach((letter, i) => {
+    if (currentWidth > maxWidth) return;
+
+    if (pattern.test(letter)) {
+      // Chinese characters
+      currentWidth += fontSize;
+    } else {
+      // get the width of single letter according to the fontSize
+      currentWidth += G6.Util.getLetterWidth(letter, fontSize);
+    }
+    if (currentWidth > maxWidth) {
+      res += `${str.slice(lastIndex, i)}\n`;
+      currentWidth -= maxWidth;
+      lastIndex = i;
+    }
+    if (i == str.length - 1) {
+      res += `${str.slice(lastIndex)}`;
+    }
+  });
+  return res;
 }

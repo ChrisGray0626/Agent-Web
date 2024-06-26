@@ -14,13 +14,22 @@ const { currentNode } = storeToRefs(nodeStore);
       style="position: absolute; top: 15px; right: 15px"
       @click="nodeStore.setConfigDisplay()"
     />
-    <!--TODO: display as plain text rather than input boxes-->
     <el-form :model="currentNode" label-position="top" style="margin: 20px">
       <el-form-item label="Task name">
-        <el-input v-model="currentNode.name" />
+        <el-input
+          type="textarea"
+          autosize
+          v-model="currentNode.name"
+          style="width: 240px"
+        />
       </el-form-item>
       <el-form-item label="Task description">
-        <el-input v-model="currentNode.description" />
+        <el-input
+          type="textarea"
+          autosize
+          style="width: 240px"
+          v-model="currentNode.description"
+        />
       </el-form-item>
     </el-form>
   </el-card>

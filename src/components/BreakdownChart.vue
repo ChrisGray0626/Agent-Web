@@ -1,8 +1,6 @@
 <script lang="ts" setup>
 import G6 from "@antv/g6";
 import { onMounted } from "vue";
-
-import { getNodeLabelFitting } from "@/G6/utils.ts";
 import { useDataStore } from "@/store/data.ts";
 
 const props = defineProps<{
@@ -23,6 +21,7 @@ onMounted(() => {
     animate: false,
     layout: {
       type: "indented",
+      direction: "LR",
       // isHorizontal: true,
       indent: 30,
     },
@@ -37,14 +36,9 @@ onMounted(() => {
       },
     },
     defaultNode: {
+      type: "breakdownNode",
       style: {
         cursor: "pointer",
-      },
-      labelCfg: {
-        position: "right",
-        style: {
-          cursor: "pointer",
-        },
       },
       anchorPoints: [
         [0.5, 1],
@@ -53,7 +47,7 @@ onMounted(() => {
     },
   });
 
-  tree.data(getNodeLabelFitting(dataStore.getTreeData)); //TODO: display full content when mouse moves in
+  tree.data(dataStore.getTreeData);
   tree.render();
 });
 </script>
