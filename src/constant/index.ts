@@ -53,3 +53,4 @@ export const TOOL_EXAMPLE = {
     },
   ],
 };
+export const MOCK = `{"task":"Extract water body from Landsat-8 images","subtasks":[{"task":"Import Landsat-8 imagery into QGIS","toolId":"gdal:translate","subtasks":[],"toolName":""},{"task":"Assign projection to the imported raster if it does not already have one","toolId":"gdal:assignprojection","subtasks":[],"toolName":""},{"task":"Select an appropriate spectral band combination for water body extraction","toolId":"gdal:rearrange_bands","subtasks":[],"toolName":""},{"task":"Apply threshold to identify water bodies","toolId":"gdal:rastercalculator","subtasks":[],"toolName":""},{"task":"Convert the raster of threshold values to vector format for precise delineation","toolId":"gdal:polygonize","subtasks":[],"toolName":""},{"task":"Refine the resultant vector layer by removing small erroneous polygons","toolId":"native:deleteholes","subtasks":[],"toolName":""}],"toolId":"","toolName":""}`;

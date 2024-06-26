@@ -4,13 +4,16 @@ import { fetchData } from "@/api/fetch.ts";
 import { computed, reactive } from "vue";
 
 export const useDataStore = defineStore("data", () => {
-  let localData: Job = reactive({}) as Job;
+  let localData = reactive({}) as Job;
 
   const getTreeData = computed(() => jobData2Tree(localData));
+
   const getGraphData = computed(() => tree2Graph(getTreeData.value));
 
-  function getData() {
-    localData = fetchData;
+  async function getData(task: string) {
+    localData = JSON.parse((await fetchData(task)) as string);
+    console.log("localData", localData);
   }
+
   return { localData, getTreeData, getGraphData, getData };
 });

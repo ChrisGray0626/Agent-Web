@@ -28,8 +28,11 @@ export const useSessionStore = defineStore("session", () => {
     answer: "",
   });
 
-  function chatted() {
-    if (Object.keys(dataStore.localData)) dataStore.getData();
+  async function chatted() {
+    if (!dataStore.localData.task) {
+      await dataStore.getData(newChat.question);
+      // renderGraph();
+    }
     session.chat.push({ ...newChat });
     newChat.chatId = generateId();
     newChat.question = "";
