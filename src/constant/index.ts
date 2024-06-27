@@ -1,3 +1,5 @@
+export const BASE_URL = "http://121.196.198.27:32580/"
+
 export const JOB_EXAMPLE = {
   task: "Calculation of Flood Affected Area",
   subtasks: [
