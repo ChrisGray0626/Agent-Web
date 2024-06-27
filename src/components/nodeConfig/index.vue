@@ -5,6 +5,10 @@ import { storeToRefs } from "pinia";
 
 const nodeStore = useNodeStore();
 const { activateNode } = storeToRefs(nodeStore);
+
+const onSubmit = () => {
+  alert("submit!");
+};
 </script>
 <template>
   <el-card
@@ -32,6 +36,9 @@ const { activateNode } = storeToRefs(nodeStore);
           <el-table-column prop="name" label="Name" width="180" />
           <el-table-column prop="description" label="Description" width="180" />
         </el-table>
+      </el-form-item>
+      <el-form-item>
+        <el-button type="primary" @click="onSubmit">Submit</el-button>
       </el-form-item>
     </el-form>
   </el-card>
