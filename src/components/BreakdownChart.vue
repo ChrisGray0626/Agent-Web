@@ -36,7 +36,7 @@ onMounted(() => {
 
   tree.data(dataStore.getTreeData);
   tree.render();
-  tree.fitCenter();
+  tree.fitView();
 });
 </script>
 

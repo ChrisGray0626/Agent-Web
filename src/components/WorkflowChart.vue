@@ -25,7 +25,7 @@ onMounted(() => {
     fitCenter: true,
     layout: {
       type: "dagre",
-      ranksep: 25,
+      ranksep: 12,
     },
     modes: {
       default: ["activate-node", "drag-canvas"],

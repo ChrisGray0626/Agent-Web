@@ -52,10 +52,12 @@ export function tree2Graph(treeData: TreeGraphData) {
     edges: [],
   };
   function buildNode(nodes: TreeGraphData) {
-    const { id, label, children } = nodes;
+    const { id, label, toolId, toolName, children } = nodes;
     const node = {
       id,
       label,
+      toolId,
+      toolName,
     };
     if (children && children.length > 0) {
       children.forEach((child) => {

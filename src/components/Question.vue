@@ -3,8 +3,8 @@ import { Promotion } from "@element-plus/icons-vue";
 import { useSessionStore } from "../store/session.ts";
 
 const sessionStore = useSessionStore();
-// sessionStore.newChat.question = "placeholder";
-// sessionStore.chatted();
+sessionStore.session.question = "Calculation of Flood Affected Area";
+sessionStore.chatted();
 </script>
 
 <template>

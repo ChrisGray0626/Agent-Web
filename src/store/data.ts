@@ -1,7 +1,8 @@
 import { defineStore } from "pinia";
 import { Job, jobData2Tree, tree2Graph } from "@/utils/graphUtil.ts";
-import { fetchData } from "@/api/fetch.ts";
 import { computed, reactive } from "vue";
+import { mockFetchJob } from "@/api/fetch.ts";
+// import axios from "@/api";
 
 export const useDataStore = defineStore("data", () => {
   let localData = reactive({}) as Job;
@@ -11,7 +12,9 @@ export const useDataStore = defineStore("data", () => {
   const getGraphData = computed(() => tree2Graph(getTreeData.value));
 
   async function getData(task: string) {
-    localData = JSON.parse((await fetchData(task)) as string);
+    localData = ((await mockFetchJob(task)) as { data: any }).data;
+    // console.log(await mockFetchJob(task));
+    // localData = (await axios.fetchJob(`{"task":"${task}"}`)).data;
     console.log("localData", localData);
   }
 

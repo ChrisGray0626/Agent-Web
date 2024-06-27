@@ -5,6 +5,7 @@ export const indentedEdge: ShapeOptions = {
     const shape = group?.get("children")[0];
     shape.attr("stroke", "#656565");
     shape.attr("radius", "16");
+    shape.attr("lineWidth", "2");
   },
   getControlPoints: (cfg) => {
     const startPoint = cfg.startPoint;
@@ -22,7 +23,7 @@ export const indentedEdge: ShapeOptions = {
 export const workflowEdge: ShapeOptions = {
   draw(cfg, group) {
     const { startPoint, endPoint } = cfg;
-    const r = 4;
+    const r = 3;
     const lineWidth = 2;
     const keyShape = group.addShape("path", {
       attrs: {
@@ -44,8 +45,4 @@ export const workflowEdge: ShapeOptions = {
     group.toFront();
     return keyShape;
   },
-  // afterDraw(_cfg, group) {
-  //   const shape = group?.get("children")[0];
-  //   shape?.toFront();
-  // },
 };

@@ -78,7 +78,7 @@ export const rootNode: ShapeOptions = {
         height,
         fill: rootColor,
         radius: 2,
-        stroke: "#5B8FF9",
+        stroke: "#5A77C1",
         cursor: "pointer",
       },
       name: "root-node-key-shape",
@@ -117,6 +117,8 @@ export const breakdownNode: ShapeOptions = {
         // y: -r / 2,
         r,
         stroke: "#5B8FF9",
+        fill: "#D7DCF1",
+        lineWidth: 2,
         cursor: "pointer",
       },
       name: "root-node-key-shape",
@@ -137,12 +139,15 @@ export const breakdownNode: ShapeOptions = {
     return keyShape;
   },
   getAnchorPoints() {
-    return [[0.5, 1]];
+    return [
+      [0.5, 1],
+      [0, 0.5],
+    ];
   },
 };
 export const workflowNode: ShapeOptions = {
   draw(cfg, group) {
-    const size = 48;
+    const size = 24;
     const keyShape = group.addShape("rect", {
       attrs: {
         width: size,
@@ -170,7 +175,7 @@ export const workflowNode: ShapeOptions = {
     });
     group.addShape("text", {
       attrs: {
-        text: textWrapping(cfg.label as string, 300),
+        text: textWrapping(cfg.toolId as string, 300),
         fill: "#000",
         x: size * 1.5,
         y: size / 2,
