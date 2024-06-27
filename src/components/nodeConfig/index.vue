@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { Close } from "@element-plus/icons-vue";
-import { useNodeStore } from "@/store/node.ts";
-import { storeToRefs } from "pinia";
+import {Close} from "@element-plus/icons-vue";
+import {useNodeStore} from "@/store/node.ts";
+import {storeToRefs} from "pinia";
 
 const nodeStore = useNodeStore();
 const { activateNode } = storeToRefs(nodeStore);
@@ -12,8 +12,8 @@ const onSave = () => {
 const onCancel = () => {
   alert("cancel!");
 };
-const onSubmit = () => {
-  alert("submit!");
+const onExecute = () => {
+  alert("execute!");
 };
 </script>
 <template>
@@ -49,8 +49,9 @@ const onSubmit = () => {
         <el-button
           style="position: absolute; right: 0"
           type="primary"
-          @click="onSubmit"
-          >Submit</el-button
+          @click="onExecute"
+        >Execute
+        </el-button
         >
       </el-form-item>
     </el-form>
