@@ -6,6 +6,12 @@ import { storeToRefs } from "pinia";
 const nodeStore = useNodeStore();
 const { activateNode } = storeToRefs(nodeStore);
 
+const onSave = () => {
+  alert("save!");
+};
+const onCancel = () => {
+  alert("cancel!");
+};
 const onSubmit = () => {
   alert("submit!");
 };
@@ -38,7 +44,14 @@ const onSubmit = () => {
         </el-table>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="onSubmit">Submit</el-button>
+        <el-button @click="onSave">Save</el-button>
+        <el-button @click="onCancel">Cancel</el-button>
+        <el-button
+          style="position: absolute; right: 0"
+          type="primary"
+          @click="onSubmit"
+          >Submit</el-button
+        >
       </el-form-item>
     </el-form>
   </el-card>
