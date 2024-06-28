@@ -6,7 +6,7 @@ import {Task} from "@/type.ts";
 // import axios from "@/api";
 
 export const useJobStore = defineStore("job", () => {
-    let _job;
+    let _job: Task;
 
     async function fetchData(task: string) {
         const res = ((await mockFetchJob(task)) as { data: any }).data;
@@ -33,7 +33,7 @@ export const useJobStore = defineStore("job", () => {
 
     const job = computed(() => {
         if (!_job) {
-            return new Task();
+            return null;
         } else {
             return _job;
         }

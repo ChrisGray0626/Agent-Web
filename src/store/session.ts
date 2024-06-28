@@ -19,8 +19,9 @@ export const useSessionStore = defineStore("session", () => {
   });
   const graphShow = ref(false);
 
+  // TODO chatted?
   async function chatted() {
-    if (!dataStore.job.name) {
+    if (!dataStore.job) {
       await dataStore.fetchData(session.question);
     }
     // session.question = "";

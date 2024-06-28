@@ -5,12 +5,8 @@ export class Task {
 
   constructor(task: string, toolId: string, toolName: string) {
     this.name = task;
-    this.initTool(toolId, toolName);
-    this.children = [] as Task[];
-  }
-
-  initTool(toolId: string, toolName: string) {
     this.tool = new Tool(toolId, toolName);
+    this.children = [] as Task[];
   }
 
   addChild(task: Task) {
@@ -31,6 +27,8 @@ export class Tool {
   constructor(id: string, name: string) {
     this.id = id;
     this.name = name;
+    this.description = "";
+    this.args = [];
   }
 }
 
