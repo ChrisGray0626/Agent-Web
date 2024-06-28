@@ -5,13 +5,8 @@
  */
 import G6, { TreeGraphData } from "@antv/g6";
 import { GraphData } from "@antv/g6-core/lib/types";
+import { Task } from "@/type.ts";
 
-export type Job = {
-  task: string;
-  toolId: string;
-  toolName: string;
-  subtasks: Job[];
-};
 // export type Tool = {
 //   id: string;
 //   name: string;
@@ -29,7 +24,7 @@ export type Job = {
 //   children: TreeNode[];
 // };
 
-export function jobData2Tree(data: Job) {
+export function jobData2Tree(data: Task) {
   const { subtasks } = data;
   const graphData: TreeGraphData = {
     id: generateId(),

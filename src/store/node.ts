@@ -1,16 +1,6 @@
 import { defineStore } from "pinia";
 import { reactive, ref } from "vue";
-
-type Node = {
-  id: string;
-  name: string;
-  description: string;
-  args: {
-    name: string;
-    description: string;
-    required: boolean;
-  }[];
-};
+import { Node } from "@/type.ts";
 
 export const useNodeStore = defineStore("node", () => {
   const activateNode = reactive<Node>({

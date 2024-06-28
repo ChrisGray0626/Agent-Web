@@ -14,7 +14,6 @@
   height: 100%;
   background-color: #fff;
   .title {
-    position: relative;
     font-size: 20px;
   }
 }
