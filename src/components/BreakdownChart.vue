@@ -1,13 +1,13 @@
 <script lang="ts" setup>
 import G6 from "@antv/g6";
-import { onMounted } from "vue";
-import { useDataStore } from "@/store/data.ts";
+import {onMounted} from "vue";
+import {useJobStore} from "@/store/job.ts";
 
 const props = defineProps<{
   graphId: string;
 }>();
 
-const dataStore = useDataStore();
+const dataStore = useJobStore();
 
 const getGraphNum = function () {
   return "mountNode-" + props.graphId;
@@ -34,7 +34,7 @@ onMounted(() => {
     },
   });
 
-  tree.data(dataStore.getTreeData);
+  tree.data(dataStore.breakdownData);
   tree.render();
   tree.fitView(50);
 });

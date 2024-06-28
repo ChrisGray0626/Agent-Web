@@ -1,7 +1,7 @@
-import { defineStore } from "pinia";
-import { reactive, ref } from "vue";
-import { generateId } from "@/utils/graphUtil";
-import { useDataStore } from "@/store/data.ts";
+import {defineStore} from "pinia";
+import {reactive, ref} from "vue";
+import {generateId} from "@/utils/graphUtil";
+import {useJobStore} from "@/store/job.ts";
 
 type Session = {
   sessionId: string;
@@ -10,7 +10,7 @@ type Session = {
 };
 
 export const useSessionStore = defineStore("session", () => {
-  const dataStore = useDataStore();
+  const dataStore = useJobStore();
 
   const session = reactive<Session>({
     sessionId: generateId(),
@@ -20,8 +20,8 @@ export const useSessionStore = defineStore("session", () => {
   const graphShow = ref(false);
 
   async function chatted() {
-    if (!dataStore.localData.task) {
-      await dataStore.getData(session.question);
+    if (!dataStore.job.name) {
+      await dataStore.fetchData(session.question);
     }
     // session.question = "";
     graphShow.value = true;

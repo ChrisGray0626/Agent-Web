@@ -4,15 +4,15 @@
     @Date: 2024/6/7
 -->
 <script setup lang="ts">
-import { onMounted } from "vue";
+import {onMounted} from "vue";
 import G6 from "@antv/g6";
-import { useDataStore } from "@/store/data.ts";
+import {useJobStore} from "@/store/job.ts";
 
 const props = defineProps<{
   graphId: string;
 }>();
 
-const dataStore = useDataStore();
+const dataStore = useJobStore();
 
 const getGraphNum = function () {
   return "mountNode-" + props.graphId;
@@ -39,7 +39,7 @@ onMounted(() => {
     },
   });
 
-  graph.data(dataStore.getGraphData);
+  graph.data(dataStore.workflowData);
   graph.render();
 
   const group = graph.get("edgeGroup");

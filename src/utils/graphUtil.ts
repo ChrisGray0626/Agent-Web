@@ -3,69 +3,58 @@
  * @Author: Chris
  * @Date: 2024/6/7
  */
-import G6, { TreeGraphData } from "@antv/g6";
-import { GraphData } from "@antv/g6-core/lib/types";
-import { Task } from "@/type.ts";
+import G6, {TreeGraphData} from "@antv/g6";
+import {GraphData} from "@antv/g6-core/lib/types";
+import {Task} from "@/type.ts";
 
-// export type Tool = {
-//   id: string;
-//   name: string;
-//   description: string;
-//   args: {
-//     name: string;
-//     type: string;
-//     description: string;
-//   }[];
-// };
-// type TreeNode = {
-//   label: string;
-//   toolId: string;
-//   toolName: string;
-//   children: TreeNode[];
-// };
+export function job2G6Tree(job: Task) {
 
-export function jobData2Tree(data: Task) {
-  const { subtasks } = data;
-  const graphData: TreeGraphData = {
-    id: generateId(),
-    label: data.task,
-    toolId: data.toolId,
-    toolName: data.toolName,
-    children: [],
-  };
-  if (subtasks && subtasks.length > 0) {
-    for (let i = 0; i < subtasks.length; i++) {
-      graphData.children!.push(jobData2Tree(subtasks[i]));
+  function buildTreeNode(task: Task) {
+    const {children} = task;
+    const treeNode: TreeGraphData = {
+      id: generateId(),
+      label: task.name,
+      toolId: task.tool.id,
+      toolName: task.tool.name,
+      children: [] as TreeGraphData[],
+    };
+    if (children && children.length > 0) {
+      for (let i = 0; i < children.length; i++) {
+        treeNode.children!.push(buildTreeNode(children[i]));
+      }
     }
+    return treeNode;
   }
-  return graphData;
+
+  return buildTreeNode(job);
 }
 
-export function tree2Graph(treeData: TreeGraphData) {
-  const finalTaskList: GraphData = {
+export function jobLeafNode2G6Graph(job: Task) {
+  const leafNodes: GraphData = {
     nodes: [],
     edges: [],
   };
-  function buildNode(nodes: TreeGraphData) {
-    const { id, label, toolId, toolName, children } = nodes;
+
+  function buildNode(task: Task) {
+    const {children} = task;
     const node = {
-      id,
-      label,
-      toolId,
-      toolName,
+      id: generateId(),
+      label: task.name,
+      toolId: task.tool.id,
+      toolName: task.tool.name,
     };
     if (children && children.length > 0) {
       children.forEach((child) => {
         buildNode(child);
       });
     } else {
-      finalTaskList.nodes!.push(node);
+      leafNodes.nodes!.push(node);
     }
   }
   function buildEdge(nodeData: GraphData) {
     if (nodeData.nodes) {
       for (let i = 1; i < nodeData.nodes.length; i++) {
-        finalTaskList.edges!.push({
+        leafNodes.edges!.push({
           id: generateId(),
           source: nodeData.nodes[i - 1].id,
           target: nodeData.nodes[i].id,
@@ -73,10 +62,11 @@ export function tree2Graph(treeData: TreeGraphData) {
       }
     }
   }
-  buildNode(treeData);
-  buildEdge(finalTaskList);
 
-  return finalTaskList;
+  buildNode(job);
+  buildEdge(leafNodes);
+
+  return leafNodes;
 }
 
 /**
