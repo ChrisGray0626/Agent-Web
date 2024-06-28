@@ -1,0 +1,7 @@
+services:
+  frontend:
+    image: chrisgray0626/gis-agent-frontend:latest
+    volumes:
+      - ./nginx/log:/var/log/nginx
+    ports:
+      - 8888:80
