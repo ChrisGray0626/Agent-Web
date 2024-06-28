@@ -114,31 +114,39 @@ export function textWrapping(
   maxWidth: number = 300,
   fontSize: number = 12,
 ) {
-  // const ellipsis = "...";
-  // const ellipsisLength = G6.Util.getTextSize(ellipsis, fontSize)[0];
-  let currentWidth = 0;
+  let newLineWidth = 0;
+  let newSpaceIndex = 0;
+  let newLineStartIndex = 0;
+  let newSpaceIndexLineWidth = 0;
   let res = "";
-  // let spaceIndex = 0;
-  const pattern = new RegExp("[\u4E00-\u9FA5]+"); // distinguish the Chinese characters and letters
-  let lastIndex = 0;
-  str.split("").forEach((letter, i) => {
-    if (currentWidth > maxWidth) return;
+  const pattern = new RegExp("[\u4E00-\u9FA5]+"); // Chinese characters
 
+  str.split("").forEach((letter, i) => {
     if (pattern.test(letter)) {
-      // Chinese characters
-      currentWidth += fontSize;
+      // Chinese character
+      newLineWidth += fontSize;
     } else {
-      // get the width of single letter according to the fontSize
-      currentWidth += G6.Util.getLetterWidth(letter, fontSize);
+      // non-Chinese character
+      newLineWidth += G6.Util.getLetterWidth(letter, fontSize);
+      // mark the space between characters (could break line here)
+      if (letter == " ") {
+        newSpaceIndex = i;
+        newSpaceIndexLineWidth = newLineWidth;
+      }
     }
-    if (currentWidth > maxWidth) {
-      res += `${str.slice(lastIndex, i)}\n`;
-      currentWidth -= maxWidth;
-      lastIndex = i;
+
+    if (newLineWidth >= maxWidth) {
+      if (newSpaceIndex > newLineStartIndex) {
+        res += str.slice(newLineStartIndex, newSpaceIndex) + "\n";
+        newLineWidth -= newSpaceIndexLineWidth;
+        newLineStartIndex = newSpaceIndex + 1;
+      }
     }
+
     if (i == str.length - 1) {
-      res += `${str.slice(lastIndex)}`;
+      res += str.slice(newLineStartIndex);
     }
   });
   return res;
 }
+// calculation of flo|od affected area

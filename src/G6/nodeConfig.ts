@@ -125,7 +125,7 @@ export const breakdownNode: ShapeOptions = {
     });
     group.addShape("text", {
       attrs: {
-        text: textWrapping(cfg.label as string, 300),
+        text: textWrapping(cfg.label as string, 200),
         fill: "#000",
         fontSize: 12,
         x: 2 * r,
@@ -175,7 +175,7 @@ export const workflowNode: ShapeOptions = {
     });
     group.addShape("text", {
       attrs: {
-        text: textWrapping(cfg.toolId as string, 300),
+        text: cfg.toolName,
         fill: "#000",
         x: size * 1.5,
         y: size / 2,

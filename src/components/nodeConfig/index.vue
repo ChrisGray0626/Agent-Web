@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import {Close} from "@element-plus/icons-vue";
-import {useNodeStore} from "@/store/node.ts";
-import {storeToRefs} from "pinia";
+import { Close } from "@element-plus/icons-vue";
+import { useNodeStore } from "@/store/node.ts";
+import { storeToRefs } from "pinia";
 
 const nodeStore = useNodeStore();
 const { activateNode } = storeToRefs(nodeStore);
@@ -10,7 +10,7 @@ const onSave = () => {
   alert("save!");
 };
 const onCancel = () => {
-  alert("cancel!");
+  nodeStore.setConfigDisplay();
 };
 const onExecute = () => {
   alert("execute!");
@@ -50,9 +50,8 @@ const onExecute = () => {
           style="position: absolute; right: 0"
           type="primary"
           @click="onExecute"
-        >Execute
-        </el-button
-        >
+          >Execute
+        </el-button>
       </el-form-item>
     </el-form>
   </el-card>
