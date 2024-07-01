@@ -1,8 +1,12 @@
-import { MOCK_JOB, MOCK_TOOL, TOOL_EXAMPLE } from "@/constant";
+/**
+ * @Description: Mock API
+ * @Author: Martsi
+ * @Date: 2024/6/19
+ */
 
-export const toolDetail = TOOL_EXAMPLE;
+import {MOCK_JOB, MOCK_TOOL} from "@/constant";
 
-export const mockFetchJob = (task: string) =>
+export const fetchJob = (task: string) =>
   new Promise((resolve, _reject) => {
     setTimeout(
       () =>
@@ -18,7 +22,7 @@ export const mockFetchJob = (task: string) =>
     );
   });
 
-export const mockFetchTool = (_toolId: string) =>
+export const fetchTool = (_toolId: string) =>
   new Promise((resolve, _reject) => {
     setTimeout(() => resolve({ data: JSON.parse(MOCK_TOOL) }), 1000);
   });

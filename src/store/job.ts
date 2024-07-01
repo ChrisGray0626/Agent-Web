@@ -1,14 +1,14 @@
 import {defineStore} from "pinia";
 import {job2G6Tree, jobLeafNode2G6Graph} from "@/utils/graphUtil.ts";
 import {computed} from "vue";
-import {mockFetchJob} from "@/api/fetch.ts";
+import {fetchJob} from "@/api";
 import {Task} from "@/type.ts";
 
 export const useJobStore = defineStore("job", () => {
   let _job: Task;
 
-  async function fetchData(question: string) {
-    const res = ((await mockFetchJob(question)) as { data: any }).data;
+  async function updateData(question: string) {
+    const res = ((await fetchJob(question)) as { data: any }).data;
     // localData = (await axios.fetchJob(`{"question":"${question}"}`)).data;
     console.debug("res", res);
     _job = convertData(res);
@@ -30,5 +30,5 @@ export const useJobStore = defineStore("job", () => {
 
   const workflowData = computed(() => jobLeafNode2G6Graph(_job));
 
-  return {fetchData, breakdownData, workflowData};
+  return {updateData, breakdownData, workflowData};
 });

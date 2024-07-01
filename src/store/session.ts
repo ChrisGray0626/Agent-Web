@@ -21,7 +21,7 @@ export const useSessionStore = defineStore("session", () => {
 
   // TODO chatted?
   async function chatted() {
-    await jobStore.fetchData(session.question);
+    await jobStore.updateData(session.question);
     graphShow.value = true;
   }
 
