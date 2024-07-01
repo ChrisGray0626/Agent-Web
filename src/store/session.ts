@@ -1,7 +1,7 @@
-import {defineStore} from "pinia";
-import {reactive, ref} from "vue";
-import {generateId} from "@/utils/graphUtil";
-import {useJobStore} from "@/store/job.ts";
+import { defineStore } from "pinia";
+import { reactive, ref } from "vue";
+import { generateId } from "@/utils/graphUtil";
+import { useJobStore } from "@/store/job.ts";
 
 type Session = {
   sessionId: string;
@@ -25,5 +25,5 @@ export const useSessionStore = defineStore("session", () => {
     graphShow.value = true;
   }
 
-  return {session, graphShow, chatted};
+  return { session, graphShow, chatted };
 });

@@ -12,7 +12,7 @@ import Question from "@/components/Question.vue";
         <TopBox />
       </el-header>
       <el-container>
-        <el-aside width="30%">
+        <el-aside width="50%">
           <LeftBox />
         </el-aside>
         <el-main>
