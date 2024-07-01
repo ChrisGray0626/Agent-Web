@@ -10,7 +10,7 @@ type Session = {
 };
 
 export const useSessionStore = defineStore("session", () => {
-  const dataStore = useJobStore();
+  const jobStore = useJobStore();
 
   const session = reactive<Session>({
     sessionId: generateId(),
@@ -21,12 +21,9 @@ export const useSessionStore = defineStore("session", () => {
 
   // TODO chatted?
   async function chatted() {
-    if (!dataStore.job) {
-      await dataStore.fetchData(session.question);
-    }
-    // session.question = "";
+    await jobStore.fetchData(session.question);
     graphShow.value = true;
   }
 
-  return { session, graphShow, chatted };
+  return {session, graphShow, chatted};
 });
