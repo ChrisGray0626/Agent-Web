@@ -1,9 +1,9 @@
-import { IG6GraphEvent } from "@antv/g6-core/lib/types";
-import { BehaviorOption, INode, NodeConfig } from "@antv/g6";
-import { useNodeStore } from "@/store/node.ts";
+import {IG6GraphEvent} from "@antv/g6-core/lib/types";
+import {BehaviorOption} from "@antv/g6";
+import {useNodeStore} from "@/store/task.ts";
 import pinia from "@/store";
+import {Task} from "@/type.ts";
 
-const nodeStore = useNodeStore(pinia);
 
 export const activateNodeBehavior: BehaviorOption = {
   getEvents() {
@@ -12,8 +12,12 @@ export const activateNodeBehavior: BehaviorOption = {
     };
   },
   async onNodeClick(evt: IG6GraphEvent) {
-    const node = evt.item as INode;
-    console.log(node.getModel().id);
-    await nodeStore.updateData(node.getModel() as NodeConfig);
+    const node = evt.item!;
+    const task: Task = node.getModel().task as Task;
+    // Update the task config
+    const nodeStore = useNodeStore(pinia);
+    await nodeStore.updateData(task);
+    // Show the task config
+    nodeStore.show();
   },
 };

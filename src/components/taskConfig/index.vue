@@ -1,23 +1,23 @@
 <script setup lang="ts">
-import { Close } from "@element-plus/icons-vue";
-import { useNodeStore } from "@/store/node.ts";
-import { storeToRefs } from "pinia";
+import {Close} from "@element-plus/icons-vue";
+import {useNodeStore} from "@/store/task.ts";
+import {storeToRefs} from "pinia";
 
 const nodeStore = useNodeStore();
-const { activateNode } = storeToRefs(nodeStore);
+const {task} = storeToRefs(nodeStore);
 
 const onSave = () => {
   alert("save!");
 };
 const onCancel = () => {
-  nodeStore.setConfigDisplay();
+  nodeStore.close();
 };
 const onExecute = () => {
   alert("execute!");
 };
 </script>
 <template>
-  <el-card
+  <el-card v-if="nodeStore.isShowed"
     style="position: absolute; bottom: 120px; right: 30px; width: 500px"
     shadow="hover"
   >
@@ -25,20 +25,20 @@ const onExecute = () => {
       :icon="Close"
       text
       style="position: absolute; top: 15px; right: 15px"
-      @click="nodeStore.setConfigDisplay()"
+      @click="nodeStore.close()"
     />
 
-    <el-form :model="activateNode" label-position="top" style="margin: 20px">
+    <el-form label-position="top" style="margin: 20px">
       <el-descriptions direction="vertical" :column="1">
         <el-descriptions-item label="Tool name">
-          {{ activateNode.name }}
+          {{ task.tool.name }}
         </el-descriptions-item>
         <el-descriptions-item label="Tool description">
-          {{ activateNode.description }}
+          {{ task.tool.description }}
         </el-descriptions-item>
       </el-descriptions>
       <el-form-item label="Args">
-        <el-table :data="activateNode.args" style="width: 100%">
+        <el-table :data="task.tool.args" style="width: 100%">
           <el-table-column prop="name" label="Name" width="180" />
           <el-table-column prop="description" label="Description" width="180" />
         </el-table>
@@ -54,6 +54,7 @@ const onExecute = () => {
         </el-button>
       </el-form-item>
     </el-form>
+
   </el-card>
 </template>
 

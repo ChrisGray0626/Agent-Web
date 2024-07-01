@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import WorkflowChart from "@/components/WorkflowChart.vue";
-import NodeConfig from "@/components/nodeConfig/index.vue";
-import { useNodeStore } from "@/store/node.ts";
-import { useSessionStore } from "@/store/session.ts";
+import NodeConfig from "@/components/taskConfig/index.vue";
+import {useNodeStore} from "@/store/task.ts";
+import {useSessionStore} from "@/store/session.ts";
 
 const nodeStore = useNodeStore();
 const sessionStore = useSessionStore();
@@ -14,7 +14,7 @@ const sessionStore = useSessionStore();
       v-if="sessionStore.graphShow"
       :graph-id="sessionStore.session.sessionId + '-workflow'"
     />
-    <NodeConfig v-show="nodeStore.configDisplay" />
+    <NodeConfig v-show="nodeStore.isShowed"/>
   </div>
 </template>
 

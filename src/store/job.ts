@@ -1,5 +1,5 @@
 import {defineStore} from "pinia";
-import {job2G6Tree, jobLeafNode2G6Graph} from "@/utils/graphUtil.ts";
+import {job2G6TreeGraph, jobLeafNode2G6Graph} from "@/utils/graphUtil.ts";
 import {computed} from "vue";
 import {fetchJob} from "@/api";
 import {Task} from "@/type.ts";
@@ -26,7 +26,7 @@ export const useJobStore = defineStore("job", () => {
     }
   }
 
-  const breakdownData = computed(() => job2G6Tree(_job));
+  const breakdownData = computed(() => job2G6TreeGraph(_job));
 
   const workflowData = computed(() => jobLeafNode2G6Graph(_job));
 

@@ -4,18 +4,17 @@
  * @Date: 2024/6/7
  */
 import G6, {TreeGraphData} from "@antv/g6";
-import {GraphData} from "@antv/g6-core/lib/types";
+import {EdgeConfig, GraphData, NodeConfig} from "@antv/g6-core/lib/types";
 import {Task} from "@/type.ts";
 
-export function job2G6Tree(job: Task) {
+export function job2G6TreeGraph(job: Task) {
 
   function buildTreeNode(task: Task) {
     const {children} = task;
     const treeNode: TreeGraphData = {
       id: generateId(),
       label: task.name,
-      toolId: task.tool.id,
-      toolName: task.tool.name,
+      task: task,
       children: [] as TreeGraphData[],
     };
     if (children && children.length > 0) {
@@ -31,17 +30,16 @@ export function job2G6Tree(job: Task) {
 
 export function jobLeafNode2G6Graph(job: Task) {
   const leafNodes: GraphData = {
-    nodes: [],
-    edges: [],
+    nodes: [] as NodeConfig[],
+    edges: [] as EdgeConfig[],
   };
 
   function buildNode(task: Task) {
     const {children} = task;
-    const node = {
+    const node: NodeConfig = {
       id: generateId(),
       label: task.name,
-      toolId: task.tool.id,
-      toolName: task.tool.name,
+      task: task,
     };
     if (children && children.length > 0) {
       children.forEach((child) => {
@@ -51,21 +49,18 @@ export function jobLeafNode2G6Graph(job: Task) {
       leafNodes.nodes!.push(node);
     }
   }
-  function buildEdge(nodeData: GraphData) {
-    if (nodeData.nodes) {
-      for (let i = 1; i < nodeData.nodes.length; i++) {
-        leafNodes.edges!.push({
-          id: generateId(),
-          source: nodeData.nodes[i - 1].id,
-          target: nodeData.nodes[i].id,
-        });
-      }
-    }
-  }
 
   buildNode(job);
-  buildEdge(leafNodes);
-
+  // Build nodes
+  if (leafNodes.nodes) {
+    for (let i = 1; i < leafNodes.nodes.length; i++) {
+      leafNodes.edges!.push({
+        id: generateId(),
+        source: leafNodes.nodes[i - 1].id,
+        target: leafNodes.nodes[i].id,
+      });
+    }
+  }
   return leafNodes;
 }
 
