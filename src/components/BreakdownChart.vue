@@ -24,7 +24,10 @@ onMounted(() => {
       indent: 50,
     },
     modes: {
-      default: ["activate-node", "drag-canvas"],
+      default: [
+        // "activate-node",
+        "drag-canvas",
+      ],
     },
     defaultNode: {
       type: "breakdownNode",
@@ -36,7 +39,7 @@ onMounted(() => {
 
   tree.data(jobStore.breakdownData);
   tree.render();
-  tree.fitView();
+  tree.fitCenter();
 });
 </script>
 

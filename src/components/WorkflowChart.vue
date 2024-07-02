@@ -22,7 +22,7 @@ onMounted(() => {
   console.log("workflow");
   const graph = new G6.Graph({
     container: getGraphNum(),
-    fitView: true,
+    fitCenter: true,
     layout: {
       type: "dagre",
       ranksep: 12,

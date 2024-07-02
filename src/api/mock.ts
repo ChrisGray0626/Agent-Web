@@ -4,7 +4,7 @@
  * @Date: 2024/6/19
  */
 
-import {MOCK_JOB, MOCK_TOOL} from "@/constant";
+import { MOCK_JOB, MOCK_TOOL } from "@/constant";
 
 export const fetchJob = (task: string) =>
   new Promise((resolve, _reject) => {
@@ -18,11 +18,22 @@ export const fetchJob = (task: string) =>
             ),
           ),
         }),
-      1000,
+      100,
     );
   });
 
 export const fetchTool = (_toolId: string) =>
   new Promise((resolve, _reject) => {
-    setTimeout(() => resolve({ data: JSON.parse(MOCK_TOOL) }), 1000);
+    setTimeout(
+      () =>
+        resolve({
+          data: JSON.parse(
+            MOCK_TOOL.replace(/Basic_statistics_for_fields/, _toolId).replace(
+              /qgis:basicstatisticsforfields/,
+              _toolId,
+            ),
+          ),
+        }),
+      100,
+    );
   });

@@ -1,6 +1,7 @@
 import { ShapeOptions } from "@antv/g6";
 
 import { textWrapping } from "@/utils/graphUtil.ts";
+import { Task } from "@/type.ts";
 
 /**
  * @Description: G6 Node Style
@@ -175,7 +176,7 @@ export const workflowNode: ShapeOptions = {
     });
     group.addShape("text", {
       attrs: {
-        text: cfg.toolName,
+        text: (cfg.task as Task).tool.name,
         fill: "#000",
         x: size * 1.5,
         y: size / 2,
