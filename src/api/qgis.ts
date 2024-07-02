@@ -33,9 +33,9 @@ export function clearWorkspace() {
  * @param files
  */
 export function uploadFiles(files: File[]) {
-  const formData: FormData = {
-    "file_list": files,
-  }
+  let formData = new FormData()
+  formData.append("file_list", files)
+
   const config = {
     headers: {
       'Content-Type': 'multipart/form-data'
@@ -45,7 +45,8 @@ export function uploadFiles(files: File[]) {
 }
 
 // TODO download file
-export function downloadFile()
+export function downloadFile() {
+}
 
 /**
  * 执行
