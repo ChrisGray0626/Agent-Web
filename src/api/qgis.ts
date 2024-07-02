@@ -34,7 +34,9 @@ export function clearWorkspace() {
  */
 export function uploadFiles(files: File[]) {
   let formData = new FormData()
-  formData.append("file_list", files)
+  files.forEach(file => {
+    formData.append("file_list", file)
+  })
 
   const config = {
     headers: {
