@@ -46,7 +46,7 @@ onMounted(() => {
   const group = graph.get("edgeGroup");
   group.toFront();
 
-  graph.on("click", (e) => {
+  graph.on("click", () => {
     taskStore.close();
   });
 });
