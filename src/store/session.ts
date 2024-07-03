@@ -18,12 +18,14 @@ export const useSessionStore = defineStore("session", () => {
     question: "",
   });
   const graphShow = ref(false);
+  const questionShow = ref(true);
 
   // TODO chatted?
   async function chatted() {
     await jobStore.updateData(session.question);
     graphShow.value = true;
+    questionShow.value = false;
   }
 
-  return { session, graphShow, chatted };
+  return { session, graphShow, questionShow, chatted };
 });

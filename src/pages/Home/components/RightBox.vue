@@ -20,6 +20,6 @@ const sessionStore = useSessionStore();
 
 <style lang="less" scoped>
 .container {
-  height: calc(100vh - 170px);
+  height: 100%;
 }
 </style>

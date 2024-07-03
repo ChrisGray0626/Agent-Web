@@ -12,7 +12,7 @@
   justify-content: center;
   align-items: center;
   height: 100%;
-  background-color: #fff;
+  //background-color: #fff;
   .title {
     font-size: 20px;
   }

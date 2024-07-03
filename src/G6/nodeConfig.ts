@@ -120,20 +120,20 @@ export const breakdownNode: ShapeOptions = {
         stroke: "#5B8FF9",
         fill: "#D7DCF1",
         lineWidth: 2,
-        cursor: "pointer",
+        // cursor: "pointer",
       },
       name: "root-node-key-shape",
     });
     group.addShape("text", {
       attrs: {
-        text: textWrapping(cfg.label as string, 200),
+        text: textWrapping(cfg.label as string, 300),
         fill: "#000",
         fontSize: 12,
         x: 2 * r,
         // y: -r / 2,
         textAlign: "left",
         textBaseline: "middle",
-        cursor: "pointer",
+        // cursor: "pointer",
       },
       name: "root-text-shape",
     });

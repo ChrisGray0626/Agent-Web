@@ -49,7 +49,7 @@ function onCancel() {
 <template>
   <el-card
     v-if="taskStore.isShowed"
-    style="position: absolute; bottom: 120px; right: 30px; width: 500px"
+    style="position: absolute; bottom: 30px; right: 30px; width: 500px"
     shadow="hover"
   >
     <el-button

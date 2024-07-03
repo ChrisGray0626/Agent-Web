@@ -18,7 +18,7 @@ export const fetchJob = (task: string) =>
             ),
           ),
         }),
-      100,
+      500,
     );
   });
 
@@ -34,6 +34,6 @@ export const fetchTool = (_toolId: string) =>
             ),
           ),
         }),
-      100,
+      500,
     );
   });

@@ -3,6 +3,7 @@ import TopBox from "@/pages/Home/components/TopBox.vue";
 import LeftBox from "@/pages/Home/components/LeftBox.vue";
 import RightBox from "@/pages/Home/components/RightBox.vue";
 import Question from "@/components/Question.vue";
+import Case from "@/components/Case.vue";
 </script>
 
 <template>
@@ -14,10 +15,11 @@ import Question from "@/components/Question.vue";
       <el-container>
         <el-aside width="30%">
           <LeftBox />
+          <Case class="case-button" name="Calculation of Flood Affected Area" />
         </el-aside>
         <el-main>
           <RightBox />
-          <Question />
+          <Question class="question-button" />
         </el-main>
       </el-container>
     </el-container>
