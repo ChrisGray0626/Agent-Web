@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Close } from "@element-plus/icons-vue";
+import { Close, Download } from "@element-plus/icons-vue";
 import { useTaskStore } from "@/store/task.ts";
 import { storeToRefs } from "pinia";
 import { reactive, ref } from "vue";
@@ -45,6 +45,10 @@ async function onExecute(id: string, input: typeof argConfig) {
 function onCancel() {
   taskStore.close();
 }
+
+function handleClick() {
+  console.log("click");
+}
 </script>
 <template>
   <el-card
@@ -86,10 +90,22 @@ function onCancel() {
         </el-table>
       </el-form-item>
       <el-descriptions v-if="res" direction="vertical" :column="1">
-        <el-descriptions-item label="Result">
+        <el-descriptions-item>
+          <template #label>
+            Result
+            <el-button
+              type="primary"
+              :icon="Download"
+              circle
+              v-if="res.message"
+              style="float: right"
+              @click="handleClick"
+            />
+          </template>
           {{ res?.message }}
         </el-descriptions-item>
       </el-descriptions>
+
       <el-form-item>
         <div style="width: 100%; display: flex; justify-content: space-between">
           <el-button @click="onCancel">Cancel</el-button>
@@ -107,5 +123,8 @@ function onCancel() {
 .header-cell-class {
   background-color: aqua;
   border-color: aqua;
+}
+/deep/ .el-textarea__inner {
+  resize: none;
 }
 </style>

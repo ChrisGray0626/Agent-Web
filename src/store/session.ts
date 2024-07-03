@@ -19,13 +19,22 @@ export const useSessionStore = defineStore("session", () => {
   });
   const graphShow = ref(false);
   const questionShow = ref(true);
+  const loading = ref(false);
 
   // TODO chatted?
   async function chatted() {
+    loading.value = true;
     await jobStore.updateData(session.question);
     graphShow.value = true;
     questionShow.value = false;
+    loading.value = false;
   }
 
-  return { session, graphShow, questionShow, chatted };
+  return {
+    session,
+    graphShow,
+    questionShow,
+    loading,
+    chatted,
+  };
 });

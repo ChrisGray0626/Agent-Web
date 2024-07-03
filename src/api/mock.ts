@@ -18,7 +18,7 @@ export const fetchJob = (task: string) =>
             ),
           ),
         }),
-      500,
+      1000,
     );
   });
 

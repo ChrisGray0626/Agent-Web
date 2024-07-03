@@ -7,12 +7,14 @@
 import { onMounted } from "vue";
 import G6 from "@antv/g6";
 import { useJobStore } from "@/store/job.ts";
+import { useTaskStore } from "@/store/task.ts";
 
 const props = defineProps<{
   graphId: string;
 }>();
 
 const jobStore = useJobStore();
+const taskStore = useTaskStore();
 
 const getGraphNum = function () {
   return "mountNode-" + props.graphId;
@@ -43,6 +45,10 @@ onMounted(() => {
 
   const group = graph.get("edgeGroup");
   group.toFront();
+
+  graph.on("click", (e) => {
+    taskStore.close();
+  });
 });
 </script>
 
