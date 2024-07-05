@@ -22,9 +22,9 @@ const processConfig = reactive<{
 }>({});
 
 interface Response {
+  code: string;
   message: string;
-  output: string;
-  error: string;
+  data: { OUTPUT: string };
 }
 
 let res = ref<Response>();
@@ -48,7 +48,7 @@ function onCancel() {
 
 async function download() {
   console.log(res.value);
-  const response = await downloadFile(res.value.data.OUTPUT);
+  const response = await downloadFile(res.value!.data.OUTPUT);
   const url = window.URL.createObjectURL(new Blob([response.data]));
   const link = document.createElement("a");
   link.href = url;
