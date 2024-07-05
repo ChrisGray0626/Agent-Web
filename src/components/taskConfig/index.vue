@@ -3,7 +3,7 @@ import { Close, Download } from "@element-plus/icons-vue";
 import { useTaskStore } from "@/store/task.ts";
 import { storeToRefs } from "pinia";
 import { reactive, ref } from "vue";
-import { process } from "@/api";
+import { downloadFile, process } from "@/api";
 
 const taskStore = useTaskStore();
 const { tool } = storeToRefs(taskStore);
@@ -46,8 +46,14 @@ function onCancel() {
   taskStore.close();
 }
 
-function handleClick() {
-  console.log("click");
+async function download() {
+  console.log(res.value);
+  const response = await downloadFile(res.value.data.OUTPUT);
+  const url = window.URL.createObjectURL(new Blob([response.data]));
+  const link = document.createElement("a");
+  link.href = url;
+  link.setAttribute("download", "sample.txt");
+  link.click();
 }
 </script>
 <template>
@@ -99,7 +105,7 @@ function handleClick() {
               circle
               v-if="res.message"
               style="float: right"
-              @click="handleClick"
+              @click="download()"
             />
           </template>
           {{ res?.message }}

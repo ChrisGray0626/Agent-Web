@@ -3,29 +3,29 @@
  * @Author: Chris
  * @Date: 2024/7/2
  */
-import {AxiosInstanceConfig, createAxiosInstance} from "@/api/axios.ts";
+import { AxiosInstanceConfig, createAxiosInstance } from "@/api/axios.ts";
 
 const BASE_URL = "http://47.96.77.183:8000/";
 
 const axiosConfig: AxiosInstanceConfig = {
   baseURL: BASE_URL,
-}
+};
 
-const axiosInstance = createAxiosInstance(axiosConfig)
+const axiosInstance = createAxiosInstance(axiosConfig);
 
 /**
  * 获取指定路径的目录
  * @param dir
  */
 export function fetchDir(dir: string) {
-  return axiosInstance.get("qgis/process/list_dir_with_structure/?dir=" + dir)
+  return axiosInstance.get("qgis/process/list_dir_with_structure/?dir=" + dir);
 }
 
 /**
  * 清空工作空间
  */
 export function clearWorkspace() {
-  return axiosInstance.delete("qgis/process/clear_qgis_temp_dir/")
+  return axiosInstance.delete("qgis/process/clear_qgis_temp_dir/");
 }
 
 /**
@@ -33,21 +33,22 @@ export function clearWorkspace() {
  * @param files
  */
 export function uploadFiles(files: File[]) {
-  let formData = new FormData()
-  files.forEach(file => {
-    formData.append("file_list", file)
-  })
+  let formData = new FormData();
+  files.forEach((file) => {
+    formData.append("file_list", file);
+  });
 
   const config = {
     headers: {
-      'Content-Type': 'multipart/form-data'
-    }
-  }
-  return axiosInstance.post("qgis/process/upload_files/", formData, config)
+      "Content-Type": "multipart/form-data",
+    },
+  };
+  return axiosInstance.post("qgis/process/upload_files/", formData, config);
 }
 
 // TODO download file
-export function downloadFile() {
+export function downloadFile(fileName: string) {
+  return axiosInstance.get("qgis/process/download_file/?filepath=" + fileName);
 }
 
 /**
@@ -59,6 +60,6 @@ export function process(toolId: string, inputs: {}) {
   const data = {
     algorithm_id: toolId,
     parameter_dictionary: inputs,
-  }
-  return axiosInstance.post("qgis/process/qgis_process", data)
+  };
+  return axiosInstance.post("qgis/process/qgis_process", data);
 }
