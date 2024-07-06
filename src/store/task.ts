@@ -14,7 +14,7 @@ export const useTaskStore = defineStore("node", () => {
     _task.value = task;
     // TODO Fetch the tool
     // const res = await fetchTool(node.tool.id).data;
-    _task.value.tool = (await fetchTool(_task.value.tool.id)).data;
+    _task.value.tool = (await fetchTool(_task.value.tool.id)).data.data;
     console.log(_task.value);
   }
 

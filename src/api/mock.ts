@@ -13,7 +13,7 @@ export const fetchJob = (task: string) =>
         resolve({
           data: JSON.parse(
             MOCK_JOB.replace(
-              /"task":"Extract water body from Landsat-8 images/,
+              /"task":"Extract elevation data of Sri Lanka from multiple TIF files using the shape of the island from a vector file/,
               '"task":"' + task,
             ),
           ),

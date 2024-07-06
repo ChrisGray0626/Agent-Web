@@ -3,14 +3,13 @@
  * @Author: Chris
  * @Date: 2024/6/7
  */
-import G6, {TreeGraphData} from "@antv/g6";
-import {EdgeConfig, GraphData, NodeConfig} from "@antv/g6-core/lib/types";
-import {Task} from "@/type.ts";
+import G6, { TreeGraphData } from "@antv/g6";
+import { EdgeConfig, GraphData, NodeConfig } from "@antv/g6-core/lib/types";
+import { Task } from "@/type.ts";
 
 export function job2G6TreeGraph(job: Task) {
-
   function buildTreeNode(task: Task) {
-    const {children} = task;
+    const { children } = task;
     const treeNode: TreeGraphData = {
       id: generateId(),
       label: task.name,
@@ -35,7 +34,7 @@ export function jobLeafNode2G6Graph(job: Task) {
   };
 
   function buildNode(task: Task) {
-    const {children} = task;
+    const { children } = task;
     const node: NodeConfig = {
       id: generateId(),
       label: task.name,
@@ -101,32 +100,34 @@ export function textWrapping(
   let res = "";
   const pattern = new RegExp("[\u4E00-\u9FA5]+"); // Chinese characters
 
-  str.split("").forEach((letter, i) => {
-    if (pattern.test(letter)) {
-      // Chinese character
-      newLineWidth += fontSize;
-    } else {
-      // non-Chinese character
-      newLineWidth += G6.Util.getLetterWidth(letter, fontSize);
-      // mark the space between characters (could break line here)
-      if (letter == " ") {
-        newSpaceIndex = i;
-        newSpaceIndexLineWidth = newLineWidth;
+  if (str) {
+    str.split("").forEach((letter, i) => {
+      if (pattern.test(letter)) {
+        // Chinese character
+        newLineWidth += fontSize;
+      } else {
+        // non-Chinese character
+        newLineWidth += G6.Util.getLetterWidth(letter, fontSize);
+        // mark the space between characters (could break line here)
+        if (letter == " ") {
+          newSpaceIndex = i;
+          newSpaceIndexLineWidth = newLineWidth;
+        }
       }
-    }
 
-    if (newLineWidth >= maxWidth) {
-      if (newSpaceIndex > newLineStartIndex) {
-        res += str.slice(newLineStartIndex, newSpaceIndex) + "\n";
-        newLineWidth -= newSpaceIndexLineWidth;
-        newLineStartIndex = newSpaceIndex + 1;
+      if (newLineWidth >= maxWidth) {
+        if (newSpaceIndex > newLineStartIndex) {
+          res += str.slice(newLineStartIndex, newSpaceIndex) + "\n";
+          newLineWidth -= newSpaceIndexLineWidth;
+          newLineStartIndex = newSpaceIndex + 1;
+        }
       }
-    }
 
-    if (i == str.length - 1) {
-      res += str.slice(newLineStartIndex);
-    }
-  });
+      if (i == str.length - 1) {
+        res += str.slice(newLineStartIndex);
+      }
+    });
+  }
   return res;
 }
 // calculation of flo|od affected area

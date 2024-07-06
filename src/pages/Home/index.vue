@@ -15,7 +15,7 @@ import Case from "@/components/Case.vue";
       <el-container>
         <el-aside width="30%">
           <LeftBox />
-          <Case class="case-button" name="Calculation of Flood Affected Area" />
+          <Case />
         </el-aside>
         <el-main>
           <RightBox />

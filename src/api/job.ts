@@ -5,7 +5,7 @@
  */
 import { AxiosInstanceConfig, createAxiosInstance } from "@/api/axios.ts";
 
-const BASE_URL = "http://121.196.198.27:32580/";
+const BASE_URL = "http://47.237.25.20:32580/";
 
 const axiosConfig: AxiosInstanceConfig = {
   baseURL: BASE_URL,
@@ -19,7 +19,11 @@ const axiosInstance = createAxiosInstance(axiosConfig);
  * @param data
  */
 export function fetchJob(data: string) {
-  return axiosInstance.post("gis_agent_backend/simple/task_plan/", data);
+  return axiosInstance.post("gis_agent_backend/simple/task_plan/", data, {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
 }
 
 /**
