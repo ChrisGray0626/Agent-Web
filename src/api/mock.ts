@@ -7,7 +7,7 @@
 import { MOCK_JOB, MOCK_TOOL } from "@/constant";
 
 export const fetchJob = (task: string) =>
-  new Promise((resolve, _reject) => {
+  new Promise<{ data: any }>((resolve, _reject) => {
     setTimeout(
       () =>
         resolve({
@@ -23,7 +23,7 @@ export const fetchJob = (task: string) =>
   });
 
 export const fetchTool = (_toolId: string) =>
-  new Promise((resolve, _reject) => {
+  new Promise<{ data: any }>((resolve, _reject) => {
     setTimeout(
       () =>
         resolve({

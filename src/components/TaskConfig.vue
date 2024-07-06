@@ -4,10 +4,10 @@ import { useTaskStore } from "@/store/task.ts";
 import { storeToRefs } from "pinia";
 import { reactive, ref } from "vue";
 import { downloadFile, process } from "@/api";
+import { Response } from "@/type.ts";
 
 const taskStore = useTaskStore();
 const { tool } = storeToRefs(taskStore);
-
 const argConfig = reactive<
   {
     name: string;
@@ -16,30 +16,18 @@ const argConfig = reactive<
     input: string;
   }[]
 >([]);
-
 const processConfig = reactive<{
   [key: string]: string;
 }>({});
-
-interface Response {
-  code: string;
-  message: string;
-  data: { OUTPUT: string };
-}
-
 let res = ref<Response>();
 
-for (const [, arg] of tool.value.args.entries()) {
-  argConfig.push(Object.assign(arg, { input: "" }));
-}
-
-async function onExecute(id: string, input: typeof argConfig) {
-  for (const [, arg] of input.entries()) {
+async function onExecute(id: string | undefined, input: typeof argConfig) {
+  input.forEach((arg) => {
     processConfig[arg.name] = arg.input;
+  });
+  if (id) {
+    res.value = (await process(id, processConfig)).data as Response;
   }
-  console.log(processConfig);
-  res.value = (await process(id, processConfig)).data as Response;
-  console.log(res.value);
 }
 
 function onCancel() {
@@ -47,13 +35,21 @@ function onCancel() {
 }
 
 async function download() {
-  console.log(res.value);
-  const response = await downloadFile(res.value!.data.OUTPUT);
-  const url = window.URL.createObjectURL(new Blob([response.data]));
-  const link = document.createElement("a");
-  link.href = url;
-  link.setAttribute("download", "sample.txt");
-  link.click();
+  console.log("download: ", res.value);
+  if (res.value?.data?.OUTPUT) {
+    const response = await downloadFile(res.value.data.OUTPUT || "");
+    const url = window.URL.createObjectURL(new Blob([response.data]));
+    const link = document.createElement("a");
+    link.href = url;
+    link.setAttribute("download", "sample.txt");
+    link.click();
+  }
+}
+
+if (tool.value) {
+  tool.value.args.forEach((arg) => {
+    argConfig.push(Object.assign(arg, { input: "" }));
+  });
 }
 </script>
 <template>
@@ -72,10 +68,10 @@ async function download() {
     <el-form label-position="top" style="margin: 20px">
       <el-descriptions direction="vertical" :column="1">
         <el-descriptions-item label="Tool name">
-          {{ tool.name }}
+          {{ tool?.name }}
         </el-descriptions-item>
         <el-descriptions-item label="Tool description">
-          {{ tool.description }}
+          {{ tool?.description }}
         </el-descriptions-item>
       </el-descriptions>
       <el-form-item label="Args">
@@ -103,7 +99,7 @@ async function download() {
               type="primary"
               :icon="Download"
               circle
-              v-if="res.message"
+              v-if="res.data?.OUTPUT"
               style="float: right"
               @click="download()"
             />
@@ -115,7 +111,7 @@ async function download() {
       <el-form-item>
         <div style="width: 100%; display: flex; justify-content: space-between">
           <el-button @click="onCancel">Cancel</el-button>
-          <el-button type="primary" @click="onExecute(tool.id, argConfig)"
+          <el-button type="primary" @click="onExecute(tool?.id, argConfig)"
             >Execute
           </el-button>
         </div>
@@ -125,7 +121,6 @@ async function download() {
 </template>
 
 <style scoped lang="less">
-@import "./index.less";
 .header-cell-class {
   background-color: aqua;
   border-color: aqua;

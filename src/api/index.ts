@@ -8,3 +8,5 @@
 // export * from "./job.ts"
 export * from "./mock.ts";
 export * from "./qgis.ts";
+
+// TODO: interface definition of api

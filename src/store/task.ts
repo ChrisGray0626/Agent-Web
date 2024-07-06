@@ -4,9 +4,9 @@ import { Task } from "@/type.ts";
 import { fetchTool } from "@/api";
 
 export const useTaskStore = defineStore("node", () => {
-  let _task = ref<Task>({} as Task);
+  let _task = ref<Task>();
 
-  const tool = computed(() => _task.value.tool);
+  const tool = computed(() => _task.value?.tool);
 
   let isShowed = ref(false);
 
@@ -14,9 +14,7 @@ export const useTaskStore = defineStore("node", () => {
     _task.value = task;
     // TODO Fetch the tool
     // const res = await fetchTool(node.tool.id).data;
-    _task.value.tool = (
-      (await fetchTool(_task.value.tool.id)) as { data: any }
-    ).data;
+    _task.value.tool = (await fetchTool(_task.value.tool.id)).data;
     console.log(_task.value);
   }
 

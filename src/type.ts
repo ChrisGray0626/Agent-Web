@@ -32,14 +32,12 @@ export class Tool {
   }
 }
 
-export type Node = {
-  id: string;
-  name: string;
-  description: string;
-  // props: Task;
-  args: {
-    name: string;
-    description: string;
-    required: boolean;
-  }[];
-};
+export interface Response {
+  code: string;
+  message: string;
+  data: ResponseData;
+}
+
+interface ResponseData {
+  OUTPUT?: string;
+}
