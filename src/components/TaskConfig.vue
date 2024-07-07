@@ -1,27 +1,22 @@
 <script setup lang="ts">
 import { Close, Download } from "@element-plus/icons-vue";
 import { useTaskStore } from "@/store/task.ts";
-import { storeToRefs } from "pinia";
-import { reactive, ref } from "vue";
+import { computed, reactive, ref } from "vue";
 import { downloadFile, process } from "@/api";
 import { Response } from "@/type.ts";
 
 const taskStore = useTaskStore();
-const { tool } = storeToRefs(taskStore);
-const argConfig = reactive<
-  {
-    name: string;
-    description: string;
-    type: string;
-    input: string;
-  }[]
->([]);
-const processConfig = reactive<{
-  [key: string]: string;
-}>({});
-let res = ref<Response>();
 
-async function onExecute(id: string | undefined, input: typeof argConfig) {
+let res = ref<Response>();
+const tableData = computed(
+  () => taskStore.tool?.args.map((arg) => ({ input: "", ...arg })) || [],
+);
+
+async function onExecute(
+  id: string | undefined,
+  input: typeof tableData.value,
+) {
+  const processConfig: { [key: string]: string } = reactive({});
   input.forEach((arg) => {
     processConfig[arg.name] = arg.input;
   });
@@ -45,16 +40,9 @@ async function download() {
     link.click();
   }
 }
-
-if (tool.value) {
-  tool.value.args.forEach((arg) => {
-    argConfig.push(Object.assign(arg, { input: "" }));
-  });
-}
 </script>
 <template>
   <el-card
-    v-if="taskStore.isShowed"
     style="position: absolute; bottom: 30px; right: 30px; width: 500px"
     shadow="hover"
   >
@@ -68,14 +56,14 @@ if (tool.value) {
     <el-form label-position="top" style="margin: 20px">
       <el-descriptions direction="vertical" :column="1">
         <el-descriptions-item label="Tool name">
-          {{ tool?.name }}
+          {{ taskStore.tool?.name }}
         </el-descriptions-item>
         <el-descriptions-item label="Tool description">
-          {{ tool?.description }}
+          {{ taskStore.tool?.description }}
         </el-descriptions-item>
       </el-descriptions>
       <el-form-item label="Args">
-        <el-table :data="argConfig" header-cell-class-name="header-cell-class">
+        <el-table :data="tableData" header-cell-class-name="header-cell-class">
           <el-table-column prop="name" label="Name" />
           <el-table-column prop="description" label="Description" />
           <el-table-column prop="input" label="Input">
@@ -111,9 +99,11 @@ if (tool.value) {
       <el-form-item>
         <div style="width: 100%; display: flex; justify-content: space-between">
           <el-button @click="onCancel">Cancel</el-button>
-          <el-button type="primary" @click="onExecute(tool?.id, argConfig)"
-            >Execute
-          </el-button>
+          <el-button
+            type="primary"
+            @click="onExecute(taskStore.tool?.id, tableData)"
+            >Execute</el-button
+          >
         </div>
       </el-form-item>
     </el-form>
@@ -125,6 +115,7 @@ if (tool.value) {
   background-color: aqua;
   border-color: aqua;
 }
+
 /deep/ .el-textarea__inner {
   resize: none;
 }
