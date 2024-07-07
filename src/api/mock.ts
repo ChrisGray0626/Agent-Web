@@ -27,12 +27,7 @@ export const fetchTool = (_toolId: string) =>
     setTimeout(
       () =>
         resolve({
-          data: JSON.parse(
-            MOCK_TOOL.replace(/Basic_statistics_for_fields/, _toolId).replace(
-              /qgis:basicstatisticsforfields/,
-              _toolId,
-            ),
-          ),
+          data: JSON.parse(MOCK_TOOL),
         }),
       500,
     );

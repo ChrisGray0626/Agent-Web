@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Close, Download } from "@element-plus/icons-vue";
 import { useTaskStore } from "@/store/task.ts";
-import { computed, reactive, ref } from "vue";
+import { computed, ref } from "vue";
 import { downloadFile, process } from "@/api";
 import { Response } from "@/type.ts";
 
@@ -14,14 +14,13 @@ const tableData = computed(
 
 async function onExecute(
   id: string | undefined,
-  input: typeof tableData.value,
+  parameters: typeof tableData.value,
 ) {
-  const processConfig: { [key: string]: string } = reactive({});
-  input.forEach((arg) => {
-    processConfig[arg.name] = arg.input;
-  });
+  const config = Object.fromEntries(
+    parameters.map((par) => [par.name, par.input]),
+  );
   if (id) {
-    res.value = (await process(id, processConfig)).data as Response;
+    res.value = (await process(id, config)).data as Response;
   }
 }
 
@@ -36,7 +35,7 @@ async function download() {
     const url = window.URL.createObjectURL(new Blob([response.data]));
     const link = document.createElement("a");
     link.href = url;
-    link.setAttribute("download", "sample.txt");
+    link.setAttribute("download", res.value.data.OUTPUT);
     link.click();
   }
 }
