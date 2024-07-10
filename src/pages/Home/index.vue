@@ -13,7 +13,7 @@ import Case from "@/components/Case.vue";
         <TopBox />
       </el-header>
       <el-container>
-        <el-aside width="30%">
+        <el-aside width="50%">
           <LeftBox />
           <Case />
         </el-aside>

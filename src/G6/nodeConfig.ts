@@ -110,6 +110,28 @@ export const rootNode: ShapeOptions = {
   },
 };
 export const breakdownNode: ShapeOptions = {
+  setState(name, value, item) {
+    const group = item?.getContainer();
+    const rectShape = group?.get("children")[0];
+    const textShape = group?.get("children")[1];
+    if (name === "hover") {
+      if (value) {
+        rectShape.attr({
+          stroke: "green",
+        });
+        textShape.attr({
+          fill: "green",
+        });
+      } else {
+        rectShape.attr({
+          stroke: "#5A77C1",
+        });
+        textShape.attr({
+          fill: "#000",
+        });
+      }
+    }
+  },
   draw(cfg, group) {
     const r = 10;
     const keyShape = group.addShape("circle", {
@@ -120,9 +142,9 @@ export const breakdownNode: ShapeOptions = {
         stroke: "#5B8FF9",
         fill: "#D7DCF1",
         lineWidth: 2,
-        // cursor: "pointer",
+        cursor: "pointer",
       },
-      name: "root-node-key-shape",
+      name: "breakdown-node-key-shape",
     });
     group.addShape("text", {
       attrs: {
@@ -135,7 +157,7 @@ export const breakdownNode: ShapeOptions = {
         textBaseline: "middle",
         // cursor: "pointer",
       },
-      name: "root-text-shape",
+      name: "breakdown-text-shape",
     });
     return keyShape;
   },
@@ -147,6 +169,28 @@ export const breakdownNode: ShapeOptions = {
   },
 };
 export const workflowNode: ShapeOptions = {
+  setState(name, value, item) {
+    const group = item?.getContainer();
+    const rectShape = group?.get("children")[0];
+    const textShape = group?.get("children")[2];
+    if (name === "hover") {
+      if (value) {
+        rectShape.attr({
+          stroke: "green",
+        });
+        textShape.attr({
+          fill: "green",
+        });
+      } else {
+        rectShape.attr({
+          stroke: "#5A77C1",
+        });
+        textShape.attr({
+          fill: "#000",
+        });
+      }
+    }
+  },
   draw(cfg, group) {
     const size = 24;
     const keyShape = group.addShape("rect", {

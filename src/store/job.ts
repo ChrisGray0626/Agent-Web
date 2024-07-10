@@ -8,8 +8,8 @@ export const useJobStore = defineStore("job", () => {
   let _job: Task;
 
   async function updateData(question: string) {
-    // const res = (await fetchJob(question)).data;
-    const res = (await fetchJob(`{ "task": "${question}" }`)).data;
+    const res = (await fetchJob(question)).data;
+    // const res = (await fetchJob(`{ "task": "${question}" }`)).data;
     console.debug("res", res);
     _job = convertData(res.data);
 

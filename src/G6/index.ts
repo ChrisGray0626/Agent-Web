@@ -1,8 +1,6 @@
 import G6 from "@antv/g6";
 import {
   breakdownNode as breakdownNodeConfig,
-  rootNode as rootNodeConfig,
-  treeNode as treeNodeConfig,
   workflowNode as workflowNodeConfig,
 } from "@/G6/nodeConfig.ts";
 import {
@@ -13,8 +11,8 @@ import { activateNodeBehavior as activateNodeBehaviorConfig } from "@/G6/behavio
 
 export function G6Register() {
   // node registration
-  G6.registerNode("rootNode", rootNodeConfig, "rect");
-  G6.registerNode("treeNode", treeNodeConfig);
+  // G6.registerNode("rootNode", rootNodeConfig, "rect");
+  // G6.registerNode("treeNode", treeNodeConfig);
   G6.registerNode("breakdownNode", breakdownNodeConfig);
   G6.registerNode("workflowNode", workflowNodeConfig);
   // edge registration
