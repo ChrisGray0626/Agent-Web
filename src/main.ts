@@ -6,12 +6,14 @@ import "element-plus/dist/index.css";
 import * as ElementPlusIconsVue from "@element-plus/icons-vue";
 import pinia from "./store";
 import { G6Register } from "@/G6";
+import router from "@/router";
 
 // G6 registration
 G6Register();
 
 const app = createApp(App);
 
+app.use(router);
 app.use(pinia);
 app.use(ElementPlus);
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {

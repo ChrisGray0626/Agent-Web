@@ -117,14 +117,14 @@ export const breakdownNode: ShapeOptions = {
     if (name === "hover") {
       if (value) {
         rectShape.attr({
-          stroke: "green",
+          fill: "green",
         });
         textShape.attr({
           fill: "green",
         });
       } else {
         rectShape.attr({
-          stroke: "#5A77C1",
+          fill: "#D7DCF1",
         });
         textShape.attr({
           fill: "#000",
@@ -155,7 +155,7 @@ export const breakdownNode: ShapeOptions = {
         // y: -r / 2,
         textAlign: "left",
         textBaseline: "middle",
-        // cursor: "pointer",
+        cursor: "pointer",
       },
       name: "breakdown-text-shape",
     });
@@ -176,14 +176,14 @@ export const workflowNode: ShapeOptions = {
     if (name === "hover") {
       if (value) {
         rectShape.attr({
-          stroke: "green",
+          fill: "green",
         });
         textShape.attr({
           fill: "green",
         });
       } else {
         rectShape.attr({
-          stroke: "#5A77C1",
+          fill: "#D7DCF1",
         });
         textShape.attr({
           fill: "#000",
