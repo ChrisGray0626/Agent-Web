@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import TopBox from "@/pages/Home/components/TopBox.vue";
-import LeftBox from "@/pages/Home/components/LeftBox.vue";
-import RightBox from "@/pages/Home/components/RightBox.vue";
+import TopBox from "@/pages/Workflow/components/TopBox.vue";
+import LeftBox from "@/pages/Workflow/components/LeftBox.vue";
+import RightBox from "@/pages/Workflow/components/RightBox.vue";
 import Question from "@/components/Question.vue";
 import Case from "@/components/Case.vue";
 </script>
