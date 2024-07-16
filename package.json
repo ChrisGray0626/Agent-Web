@@ -9,9 +9,19 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "vue": "^3.4.21"
+    "@antv/g6": "^4.8.24",
+    "@antv/layout": "^0.3.25",
+    "@element-plus/icons-vue": "^2.3.1",
+    "@logicflow/core": "^1.2.27",
+    "@logicflow/extension": "^1.2.27",
+    "axios": "^1.7.2",
+    "element-plus": "^2.7.3",
+    "pinia": "^2.1.7",
+    "vue": "^3.4.21",
+    "vue-router": "4"
   },
   "devDependencies": {
+    "@types/node": "^20.12.12",
     "@vitejs/plugin-vue": "^5.0.4",
     "less": "^4.2.0",
     "typescript": "^5.2.2",
