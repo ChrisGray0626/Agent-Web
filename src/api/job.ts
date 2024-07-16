@@ -19,11 +19,15 @@ const axiosInstance = createAxiosInstance(axiosConfig);
  * @param data
  */
 export function fetchJob(data: string) {
-  return axiosInstance.post("gis_agent_backend/simple/task_plan/", data, {
-    headers: {
-      "Content-Type": "application/json",
+  return axiosInstance.post(
+    "/gis_agent_backend/plan2level/task_plan/?modelName=gpt-4o",
+    data,
+    {
+      headers: {
+        "Content-Type": "application/json",
+      },
     },
-  });
+  );
 }
 
 /**

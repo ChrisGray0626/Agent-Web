@@ -1,60 +1,56 @@
 <script setup lang="ts">
-import { useRouter } from "vue-router";
-
-const router = useRouter();
+import Question from "@/components/Question.vue";
+import Case from "@/components/Case.vue";
 </script>
 
 <template>
   <div id="container">
-    <div class="title">Welcome</div>
-    <el-button
-      class="button"
-      @click="
-        () => {
-          router.push('/workflow');
-        }
-      "
-      >Build Workflow</el-button
-    >
-    <el-button
-      class="button"
-      @click="
-        () => {
-          router.push('/chat');
-        }
-      "
-      >Go Chat</el-button
-    >
+    <el-image
+      src="http://8.217.104.137:39999/_next/image?url=%2Flogo-light.png&w=640&q=75"
+      mode="fit"
+      style="position: absolute; top: 35px; right: 35px; height: 35px"
+    />
+    <div class="title">AI GIS SYSTEM</div>
+    <div class="content">
+      <Question />
+      <div class="cases">
+        <Case />
+      </div>
+    </div>
   </div>
 </template>
 
 <style scoped lang="less">
+@import "@/style.less";
 #container {
   height: 100vh;
-  width: 100vw;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
+  background: @bg-color;
+  text-align: center;
   .title {
-    font-size: 100px;
+    padding-top: calc(23% - 50px);
+    font-size: 50px;
     text-align: center;
-    background: linear-gradient(135deg, #c850c0, #4158d0);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-family: AppleSystemUIFont, serif;
+    color: #000000;
+    font-weight: bolder;
+    font-family: sans-serif;
+    text-shadow: 3px 2px rgba(darkblue, 0.3);
   }
-
-  .button {
-    font-size: 25px;
-    margin: 20px;
-    height: 100px;
-    width: 200px;
-    font-family: AppleSystemUIFont, serif;
-    color: #ffffff;
-    background: linear-gradient(135deg, #a1c4fd, #c2e9fb);
+  .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 70%;
+    margin: 80px auto auto;
+    .cases {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-gap: 50px;
+      justify-items: center;
+      align-items: center;
+      padding: 20px;
+      width: 100%;
+    }
   }
 }
 </style>

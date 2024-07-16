@@ -7,7 +7,7 @@ import { useRouter } from "vue-router";
 const router = useRouter();
 
 const go = () => {
-  router.push({ path: "/chat", replace: true });
+  router.push({ path: "/", replace: true });
 };
 </script>
 
@@ -18,7 +18,7 @@ const go = () => {
     <!--      >Upload</el-button-->
     <!--    >-->
     <el-button @click="go" style="position: absolute; left: 10px"
-      >Go Chat</el-button
+      >Back</el-button
     >
   </div>
 </template>

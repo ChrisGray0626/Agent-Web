@@ -20,7 +20,6 @@ export const useSessionStore = defineStore("session", () => {
     question: "",
   });
   const graphShow = ref(false);
-  const questionShow = ref(true);
   const loading = ref(false);
 
   // TODO chatted?
@@ -29,14 +28,12 @@ export const useSessionStore = defineStore("session", () => {
     await jobStore.updateData(session.question);
     await router.push("/workflow");
     graphShow.value = true;
-    questionShow.value = false;
     loading.value = false;
   }
 
   return {
     session,
     graphShow,
-    questionShow,
     loading,
     chatted,
   };

@@ -2,8 +2,6 @@
 import TopBox from "@/pages/Workflow/components/TopBox.vue";
 import LeftBox from "@/pages/Workflow/components/LeftBox.vue";
 import RightBox from "@/pages/Workflow/components/RightBox.vue";
-import Question from "@/components/Question.vue";
-import Case from "@/components/Case.vue";
 </script>
 
 <template>
@@ -13,13 +11,11 @@ import Case from "@/components/Case.vue";
         <TopBox />
       </el-header>
       <el-container>
-        <el-aside width="50%">
+        <el-aside width="35%">
           <LeftBox />
-          <Case />
         </el-aside>
         <el-main>
           <RightBox />
-          <Question class="question-button" />
         </el-main>
       </el-container>
     </el-container>
