@@ -15,7 +15,7 @@ jobs:
       matrix:
         node-version: [ 18.x ]
         image-name: [ chrisgray0626/gis-agent-frontend ]
-        image-tag: [ 0.1 ]
+        image-tag: [ 0.2 ]
 
     steps:
       - name: Checkout
