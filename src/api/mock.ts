@@ -4,15 +4,27 @@
  * @Date: 2024/6/19
  */
 
-import {MOCK_JOB, MOCK_TOOL} from "@/constant";
+import { MOCK_JOB, MOCK_TOOL } from "@/constant";
 
-export const fetchJob = (task: string) =>
+export const fetchSimpleJob = (task: string) =>
   new Promise<{ data: any }>((resolve, _reject) => {
     MOCK_JOB.data.task = task;
     setTimeout(
       () =>
         resolve({
-          data: MOCK_JOB
+          data: MOCK_JOB,
+        }),
+      1000,
+    );
+  });
+
+export const fetchLevelJob = (task: string) =>
+  new Promise<{ data: any }>((resolve, _reject) => {
+    MOCK_JOB.data.task = task;
+    setTimeout(
+      () =>
+        resolve({
+          data: MOCK_JOB,
         }),
       1000,
     );
