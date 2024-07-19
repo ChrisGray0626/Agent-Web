@@ -3,28 +3,30 @@
  * @Author: Chris
  * @Date: 2024/6/7
  */
-import G6, { TreeGraphData } from "@antv/g6";
-import { EdgeConfig, GraphData, NodeConfig } from "@antv/g6-core/lib/types";
-import { Task } from "@/type.ts";
+import G6, {TreeGraphData} from "@antv/g6";
+import {EdgeConfig, GraphData, NodeConfig} from "@antv/g6-core/lib/types";
+import {Task} from "@/type.ts";
 
 export function job2G6TreeGraph(job: Task) {
-  function buildTreeNode(task: Task) {
+  function buildTreeNode(task: Task, label: string) {
     const { children } = task;
     const treeNode: TreeGraphData = {
       id: generateId(),
-      label: task.name,
+      label: label,
       task: task,
       children: [] as TreeGraphData[],
     };
     if (children && children.length > 0) {
       for (let i = 0; i < children.length; i++) {
-        treeNode.children!.push(buildTreeNode(children[i]));
+        const subLabel = `${label}.${i + 1}`;
+        treeNode.children!.push(buildTreeNode(children[i], subLabel));
       }
     }
     return treeNode;
   }
 
-  return buildTreeNode(job);
+  const label = "task 1";
+  return buildTreeNode(job, label);
 }
 
 export function jobLeafNode2G6Graph(job: Task) {
