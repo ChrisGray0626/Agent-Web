@@ -42,7 +42,14 @@ async function download() {
 </script>
 <template>
   <el-card
-    style="position: absolute; bottom: 30px; right: 30px; width: 500px"
+    style="
+      position: absolute;
+      bottom: 30px;
+      right: 30px;
+      width: 500px;
+      max-height: calc(100vh - 130px);
+      overflow-y: auto;
+    "
     shadow="hover"
   >
     <el-button
