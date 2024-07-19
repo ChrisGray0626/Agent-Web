@@ -5,6 +5,7 @@ import { useJobStore } from "@/store/job.ts";
 import { IG6GraphEvent } from "@antv/g6-core/lib/types";
 import { useGraphStore } from "@/store/graph.ts";
 import { storeToRefs } from "pinia";
+import { Task } from "@/type.ts";
 
 const props = defineProps<{
   graphId: string;
@@ -50,7 +51,10 @@ onMounted(() => {
     const node = evt.item;
     node?.setState("hover", true);
     const EqNode = graph.value!.find("node", (n) => {
-      return n.getModel().label === node?.getModel().label;
+      return (
+        (n.getModel().task as Task).name ===
+        (node?.getModel().task as Task).name
+      );
     });
     if (EqNode) {
       graph.value!.setItemState(EqNode, "hover", true);
@@ -60,7 +64,10 @@ onMounted(() => {
     const node = evt.item;
     node?.setState("hover", false);
     const EqNode = graph.value!.find("node", (n) => {
-      return n.getModel().label === node?.getModel().label;
+      return (
+        (n.getModel().task as Task).name ===
+        (node?.getModel().task as Task).name
+      );
     });
     if (EqNode) {
       graph.value!.setItemState(EqNode, "hover", false);

@@ -31,10 +31,21 @@ export const useSessionStore = defineStore("session", () => {
     loading.value = false;
   }
 
+  function $reset() {
+    Object.assign(session, {
+      sessionId: generateId(),
+      sessionName: "",
+      question: "",
+    });
+    graphShow.value = false;
+    loading.value = false;
+  }
+
   return {
     session,
     graphShow,
     loading,
     chatted,
+    $reset,
   };
 });

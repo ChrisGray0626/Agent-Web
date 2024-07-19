@@ -3,10 +3,13 @@
 //   console.log("click");
 // }
 import { useRouter } from "vue-router";
+import { useSessionStore } from "@/store/session.ts";
 
 const router = useRouter();
+const sessionStore = useSessionStore();
 
 const go = () => {
+  sessionStore.$reset();
   router.push({ path: "/", replace: true });
 };
 </script>

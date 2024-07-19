@@ -11,6 +11,7 @@ import { useTaskStore } from "@/store/task.ts";
 import { IG6GraphEvent } from "@antv/g6-core/lib/types";
 import { useGraphStore } from "@/store/graph.ts";
 import { storeToRefs } from "pinia";
+import { Task } from "@/type.ts";
 
 const props = defineProps<{
   graphId: string;
@@ -59,8 +60,11 @@ onMounted(() => {
     const node = evt.item;
     node?.setState("hover", true);
     tree.value!.setItemState(
-      tree.value!.find("node", (node) => {
-        return node.getModel().label === node?.getModel().label;
+      tree.value!.find("node", (n) => {
+        return (
+          (n.getModel().task as Task).name ===
+          (node?.getModel().task as Task).name
+        );
       })!,
       "hover",
       true,
@@ -70,8 +74,11 @@ onMounted(() => {
     const node = evt.item;
     node?.setState("hover", false);
     tree.value!.setItemState(
-      tree.value!.find("node", (node) => {
-        return node.getModel().label === node?.getModel().label;
+      tree.value!.find("node", (n) => {
+        return (
+          (n.getModel().task as Task).name ===
+          (node?.getModel().task as Task).name
+        );
       })!,
       "hover",
       false,
