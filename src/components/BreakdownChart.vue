@@ -6,6 +6,7 @@ import { IG6GraphEvent } from "@antv/g6-core/lib/types";
 import { useGraphStore } from "@/store/graph.ts";
 import { storeToRefs } from "pinia";
 import { Task } from "@/type.ts";
+import { tooltip } from "@/G6/plugins.ts";
 
 const props = defineProps<{
   graphId: string;
@@ -35,6 +36,7 @@ onMounted(() => {
         "drag-canvas",
       ],
     },
+    plugins: [tooltip],
     defaultNode: {
       type: "breakdownNode",
     },
