@@ -6,37 +6,11 @@ const sessionStore = useSessionStore();
 </script>
 
 <template>
-  <el-skeleton animated :loading="sessionStore.loading">
-    <template #template>
-      <div style="padding: 20px">
-        <el-skeleton-item
-          variant="h1"
-          style="height: 50px; margin-bottom: 5px"
-        ></el-skeleton-item>
-        <el-skeleton-item
-          variant="h3"
-          style="height: 30px; width: 95%; margin-bottom: 10px"
-        ></el-skeleton-item>
-        <el-skeleton-item
-          variant="h3"
-          style="height: 30px; width: 95%; margin-bottom: 10px"
-        ></el-skeleton-item>
-        <el-skeleton-item
-          variant="h3"
-          style="height: 30px; width: 95%; margin-bottom: 10px"
-        ></el-skeleton-item>
-        <el-skeleton-item
-          variant="h1"
-          style="height: 50px; margin-bottom: 5px"
-        ></el-skeleton-item>
-        <el-skeleton-item
-          variant="image"
-          style="width: 100%; height: 500px"
-        ></el-skeleton-item>
-      </div>
-    </template>
-
-    <template #default>
+  <el-tabs stretch type="border-card">
+    <el-tab-pane
+      label="breakdown"
+      style="height: calc(100vh - 131px); overflow-y: auto"
+    >
       <template v-if="sessionStore.graphShow">
         <div class="collapse-item">
           <div class="collapse-title">
@@ -50,24 +24,30 @@ const sessionStore = useSessionStore();
           <div class="collapse-title">
             <div>Breakdown</div>
           </div>
-          <div class="collapse-content" style="height: calc(100vh - 380px)">
+          <div class="collapse-content" style="height: calc(100vh - 350px)">
             <BreakdownChart
               :graph-id="sessionStore.session.sessionId + '-breakdown'"
             />
           </div>
         </div>
       </template>
-    </template>
-  </el-skeleton>
+    </el-tab-pane>
+    <el-tab-pane
+      label="workspace"
+      style="height: calc(100vh - 131px); overflow-y: auto"
+    >
+      <div style="text-align: center; height: 100%">BUILDING</div>
+    </el-tab-pane>
+  </el-tabs>
 </template>
 
 <style lang="less" scoped>
 .collapse-item {
-  box-sizing: border-box;
-  background-color: #ffffff;
+  //box-sizing: border-box;
+  //background-color: #ffffff;
   border: 1px solid rgb(220, 223, 230);
   border-radius: 3px;
-  margin: 20px 20px 0 20px;
+  margin: 20px;
   .collapse-title {
     box-sizing: border-box;
     margin: 10px;

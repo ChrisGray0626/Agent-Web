@@ -25,6 +25,7 @@ onMounted(() => {
   tree.value = new G6.TreeGraph({
     container: getGraphNum(),
     animate: false,
+    linkCenter: true,
     layout: {
       type: "indented",
       direction: "LR",
