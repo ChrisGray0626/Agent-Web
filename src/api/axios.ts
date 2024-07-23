@@ -5,13 +5,13 @@
  */
 
 import axios, {AxiosInstance} from "axios";
+import {ElNotification} from 'element-plus'
+import {SUCCESS_CODE} from "@/constant";
 
 export interface AxiosInstanceConfig {
   baseURL: string;
   timeout?: number;
 }
-// 请求头设置
-// instance.defaults.headers.post["Content-Type"] = "application/json";
 // 拦截器设置
 function setInterceptor(instance: AxiosInstance) {
   // 请求拦截器设置
@@ -27,9 +27,28 @@ function setInterceptor(instance: AxiosInstance) {
 // 响应拦截器设置
   instance.interceptors.response.use(
     (response) => {
+      // 检查接口调用状态
+      if (response.data.code != SUCCESS_CODE) {
+        // 弹出错误信息
+        ElNotification.error({
+          title: 'Error',
+          message: response.data.message,
+          duration: 2000,
+        })
+      }
+      console.error(response.data)
+
       return response;
     },
     (error) => {
+      // 弹出错误信息
+      ElNotification.error({
+        title: 'Error',
+        message: response.data.message,
+        duration: 2000,
+      })
+      console.error(response.data)
+
       return Promise.reject(error);
     },
   );

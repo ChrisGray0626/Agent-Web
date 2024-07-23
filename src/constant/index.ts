@@ -1,3 +1,5 @@
+export const SUCCESS_CODE = 70200;
+
 export const JOB_EXAMPLE = {
   task: "Calculation of Flood Affected Area",
   subtasks: [
