@@ -3,7 +3,7 @@
  * @Author: Chris
  * @Date: 2024/7/2
  */
-import {AxiosInstanceConfig, createAxiosInstance} from "@/api/axios.ts";
+import { AxiosInstanceConfig, createAxiosInstance } from "@/api/axios.ts";
 
 const BASE_URL = "http://47.96.77.183:8000/";
 
@@ -16,7 +16,7 @@ const axiosInstance = createAxiosInstance(axiosConfig);
 /**
  * 获取工作空间
  */
-export async function fetchWorkspace() {
+export function fetchWorkspace() {
   return axiosInstance.get("/qgis/process/list_qgis_temp_dir_with_structure/");
 }
 

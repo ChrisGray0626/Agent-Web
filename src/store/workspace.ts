@@ -3,15 +3,15 @@
  * @Author: Chris
  * @Date: 2024/7/23
  */
-import {defineStore} from "pinia";
-import {FileNode, Response} from "@/type.ts";
-import {fetchWorkspace} from "@/api";
-import {ref} from "vue";
+import { defineStore } from "pinia";
+import { FileNode, Response } from "@/type.ts";
+import { fetchWorkspace } from "@/api";
+import { ref } from "vue";
 
 export const useWorkspaceStore = defineStore("workspace", () => {
   let _fileTree = ref<FileNode>();
 
-  function updateData() {
+  async function updateData() {
     const res = (await fetchWorkspace()).data as Response<any>;
     _fileTree.value = convertData(res.data);
   }
@@ -27,5 +27,5 @@ export const useWorkspaceStore = defineStore("workspace", () => {
     return fileNode;
   }
 
-  return {updateData};
+  return { updateData };
 });
