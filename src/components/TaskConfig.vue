@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import { Close, Download } from "@element-plus/icons-vue";
-import { useTaskStore } from "@/store/task.ts";
-import { computed, ref } from "vue";
-import { downloadFile, process } from "@/api";
-import { Response } from "@/type.ts";
+import {Close, Download} from "@element-plus/icons-vue";
+import {useTaskStore} from "@/store/task.ts";
+import {computed, ref} from "vue";
+import {downloadFile, process} from "@/api";
+import {ProcessResponse, Response} from "@/type.ts";
 
 const taskStore = useTaskStore();
 
-let res = ref<Response>();
+let res = ref<Response<ProcessResponse>>();
 const tableData = computed(
   () => taskStore.tool?.args.map((arg) => ({ input: "", ...arg })) || [],
 );
@@ -20,7 +20,7 @@ async function onExecute(
     parameters.map((par) => [par.name, par.input]),
   );
   if (id) {
-    res.value = (await process(id, config)).data as Response;
+    res.value = (await process(id, config)).data as Response<ProcessResponse>;
   }
 }
 
@@ -30,12 +30,12 @@ function onCancel() {
 
 async function download() {
   console.log("download: ", res.value);
-  if (res.value?.data?.OUTPUT) {
-    const response = await downloadFile(res.value.data.OUTPUT || "");
+  if (res.value?.data.OUTPUT) {
+    const response = await downloadFile(res.value!.data.OUTPUT || "");
     const url = window.URL.createObjectURL(new Blob([response.data]));
     const link = document.createElement("a");
     link.href = url;
-    link.setAttribute("download", res.value.data.OUTPUT);
+    link.setAttribute("download", res.value!.data.OUTPUT);
     link.click();
   }
 }

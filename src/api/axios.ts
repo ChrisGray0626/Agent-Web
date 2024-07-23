@@ -5,7 +5,7 @@
  */
 
 import axios, {AxiosInstance} from "axios";
-import {ElNotification} from 'element-plus'
+import {ElNotification} from "element-plus"
 import {SUCCESS_CODE} from "@/constant";
 
 export interface AxiosInstanceConfig {
@@ -31,23 +31,22 @@ function setInterceptor(instance: AxiosInstance) {
       if (response.data.code != SUCCESS_CODE) {
         // 弹出错误信息
         ElNotification.error({
-          title: 'Error',
+          title: "Error",
           message: response.data.message,
           duration: 2000,
         })
+        console.error(response.data)
       }
-      console.error(response.data)
-
       return response;
     },
     (error) => {
       // 弹出错误信息
       ElNotification.error({
-        title: 'Error',
-        message: response.data.message,
+        title: "Error",
+        message: error,
         duration: 2000,
       })
-      console.error(response.data)
+      console.error(error)
 
       return Promise.reject(error);
     },

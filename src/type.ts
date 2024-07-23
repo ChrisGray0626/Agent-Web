@@ -32,12 +32,28 @@ export class Tool {
   }
 }
 
-export interface Response {
-  code: string;
-  message: string;
-  data: ResponseData;
+export class FileNode {
+  label: string;
+  type: string;
+  children: FileNode[];
+
+  constructor(label: string, type: string) {
+    this.label = label;
+    this.type = type;
+    this.children = [] as FileNode[];
+  }
+
+  addChild(node: FileNode) {
+    this.children.push(node);
+  }
 }
 
-interface ResponseData {
-  OUTPUT?: string;
+export interface Response<T> {
+  code: string;
+  message: string;
+  data: T;
+}
+
+export interface ProcessResponse {
+  OUTPUT: string;
 }
