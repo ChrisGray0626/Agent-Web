@@ -3,7 +3,7 @@
  * @Author: Chris
  * @Date: 2024/7/1
  */
-import { AxiosInstanceConfig, createAxiosInstance } from "@/api/axios.ts";
+import {AxiosInstanceConfig, createAxiosInstance} from "@/api/axios.ts";
 
 const BASE_URL = "http://47.237.25.20:32580/";
 
@@ -44,6 +44,6 @@ export function fetchLevelJob(data: string) {
  */
 export function fetchTool(toolId: string) {
   return axiosInstance.get(
-    "gis_agent_backend/test_tool/get_tool/?tool_id=" + toolId,
+    "/gis_agent_backend/test_tool/get_tool/?tool_id=" + toolId,
   );
 }

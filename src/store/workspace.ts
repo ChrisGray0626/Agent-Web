@@ -16,7 +16,7 @@ export const useWorkspaceStore = defineStore("workspace", () => {
     root.value = res.data;
   }
 
-  const treeData = computed(() => root.value!.children);
+  const treeData = computed(() => root.value?.children);
 
   return {treeData, updateData};
 });
