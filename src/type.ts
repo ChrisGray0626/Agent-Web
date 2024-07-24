@@ -33,12 +33,12 @@ export class Tool {
 }
 
 export class FileNode {
-  label: string;
+  name: string;
   type: string;
   children: FileNode[];
 
-  constructor(label: string, type: string) {
-    this.label = label;
+  constructor(name: string, type: string) {
+    this.name = name;
     this.type = type;
     this.children = [] as FileNode[];
   }

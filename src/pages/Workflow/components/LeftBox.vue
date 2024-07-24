@@ -1,6 +1,7 @@
 <script lang="ts" setup>
-import { useSessionStore } from "@/store/session.ts";
+import {useSessionStore} from "@/store/session.ts";
 import BreakdownChart from "@/components/BreakdownChart.vue";
+import Workspace from "@/components/Workspace.vue";
 
 const sessionStore = useSessionStore();
 </script>
@@ -10,6 +11,7 @@ const sessionStore = useSessionStore();
     <el-tab-pane
       label="breakdown"
       style="height: calc(100vh - 131px); overflow-y: auto"
+      lazy
     >
       <template v-if="sessionStore.graphShow">
         <div class="collapse-item">
@@ -35,8 +37,11 @@ const sessionStore = useSessionStore();
     <el-tab-pane
       label="workspace"
       style="height: calc(100vh - 131px); overflow-y: auto"
+      lazy
     >
-      <div style="text-align: center; height: 100%">BUILDING</div>
+      <div style="text-align: center; height: 100%">
+        <Workspace/>
+      </div>
     </el-tab-pane>
   </el-tabs>
 </template>
