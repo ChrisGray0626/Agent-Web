@@ -26,9 +26,9 @@ export const useJobStore = defineStore("job", () => {
     }
   }
 
-  const breakdownData = computed(() => job2G6TreeGraph(_job!.value));
+  const breakdownData = computed(() => job2G6TreeGraph(_job.value as Task));
 
-  const workflowData = computed(() => jobLeafNode2G6Graph(_job!.value));
+  const workflowData = computed(() => jobLeafNode2G6Graph(_job.value as Task));
 
   return { updateData, breakdownData, workflowData };
 });
