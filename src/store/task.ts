@@ -1,20 +1,19 @@
-import { defineStore } from "pinia";
-import { computed, ref } from "vue";
-import { Task } from "@/type.ts";
-import { fetchTool } from "@/api";
+import {defineStore} from "pinia";
+import {computed, ref} from "vue";
+import {Response, Task, Tool} from "@/type.ts";
+import {fetchTool} from "@/api";
 
 export const useTaskStore = defineStore("node", () => {
   let _task = ref<Task>();
 
-  const tool = computed(() => _task.value?.tool);
+  const tool = computed(() => _task.value!.tool);
 
   let isShowed = ref(false);
 
   async function updateData(task: Task) {
     _task.value = task;
-    // TODO Fetch the tool
-    // const res = await fetchTool(node.tool.id).data;
-    _task.value.tool = (await fetchTool(_task.value.tool.id)).data.data;
+    const res = (await fetchTool(_task.value.tool.id)).data as Response<Tool>;
+    _task.value.tool = res.data;
     console.log(_task.value);
   }
 
