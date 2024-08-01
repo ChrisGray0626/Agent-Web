@@ -1,6 +1,7 @@
 services:
   frontend:
     image: chrisgray0626/gis-agent-frontend:latest
+    platform: linux/x86_64
     volumes:
       - ./nginx/log:/var/log/nginx
     ports:

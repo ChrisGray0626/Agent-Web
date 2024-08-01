@@ -42,10 +42,6 @@ export class FileNode {
     this.type = type;
     this.children = [] as FileNode[];
   }
-
-  addChild(node: FileNode) {
-    this.children.push(node);
-  }
 }
 
 export interface Response<T> {
