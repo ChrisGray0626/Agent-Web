@@ -39,7 +39,7 @@ const sessionStore = useSessionStore();
       style="height: calc(100vh - 131px); overflow-y: auto"
       lazy
     >
-      <div style="text-align: center; height: 100%">
+      <div style="height: 100%;">
         <Workspace/>
       </div>
     </el-tab-pane>
