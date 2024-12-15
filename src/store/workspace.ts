@@ -9,14 +9,18 @@ import {fetchWorkspace} from "@/api";
 import {computed, ref} from "vue";
 
 export const useWorkspaceStore = defineStore("workspace", () => {
-  let root = ref<FileNode>();
+  let root = ref<FileNode[]>([]);
 
   async function updateData() {
     const res = (await fetchWorkspace()).data as Response<FileNode>;
-    root.value = res.data;
+    root.value = Object.keys(res.data).map(key => ({
+      name: key,
+      children: [],
+      type: ''
+    }));
   }
 
-  const treeData = computed(() => root.value?.children);
+  const treeData = computed(() => root.value);
 
   return {treeData, updateData};
 });
