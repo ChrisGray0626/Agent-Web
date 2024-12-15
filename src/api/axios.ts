@@ -4,9 +4,9 @@
  * @Date: 2024/6/27
  */
 
-import axios, {AxiosInstance} from "axios";
-import {ElNotification} from "element-plus"
-import {SUCCESS_CODE} from "@/constant";
+import axios, { AxiosInstance } from "axios";
+import { ElNotification } from "element-plus";
+import { SUCCESS_CODE } from "@/constant";
 
 export interface AxiosInstanceConfig {
   baseURL: string;
@@ -24,7 +24,7 @@ function setInterceptor(instance: AxiosInstance) {
       return Promise.reject(error);
     },
   );
-// 响应拦截器设置
+  // 响应拦截器设置
   instance.interceptors.response.use(
     (response) => {
       // 检查接口调用状态
@@ -34,8 +34,8 @@ function setInterceptor(instance: AxiosInstance) {
           title: "Error",
           message: response.data.message,
           duration: 2000,
-        })
-        console.error(response.data)
+        });
+        console.error(response.data);
       }
       return response;
     },
@@ -45,15 +45,17 @@ function setInterceptor(instance: AxiosInstance) {
         title: "Error",
         message: error,
         duration: 2000,
-      })
-      console.error(error)
+      });
+      console.error(error);
 
       return Promise.reject(error);
     },
   );
 }
 
-export function createAxiosInstance(config: AxiosInstanceConfig): AxiosInstance {
+export function createAxiosInstance(
+  config: AxiosInstanceConfig,
+): AxiosInstance {
   const instance = axios.create({
     baseURL: config.baseURL,
     timeout: config.timeout,

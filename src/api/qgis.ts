@@ -5,7 +5,7 @@
  */
 import { AxiosInstanceConfig, createAxiosInstance } from "@/api/axios.ts";
 
-const BASE_URL = "http://47.96.77.183:8000/";
+const BASE_URL = "http://10.130.11.30:8000/";
 
 const axiosConfig: AxiosInstanceConfig = {
   baseURL: BASE_URL,
@@ -17,7 +17,7 @@ const axiosInstance = createAxiosInstance(axiosConfig);
  * 获取工作空间
  */
 export function fetchWorkspace() {
-  return axiosInstance.get("/qgis/process/list_qgis_temp_dir_with_structure/");
+  return axiosInstance.get("qgis/process/list_dir_with_structure/?dir=/");
 }
 
 /**

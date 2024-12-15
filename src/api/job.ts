@@ -3,9 +3,9 @@
  * @Author: Chris
  * @Date: 2024/7/1
  */
-import {AxiosInstanceConfig, createAxiosInstance} from "@/api/axios.ts";
+import { AxiosInstanceConfig, createAxiosInstance } from "@/api/axios.ts";
 
-const BASE_URL = "http://47.237.25.20:32580/";
+const BASE_URL = "http://10.130.11.30:32580/";
 
 const axiosConfig: AxiosInstanceConfig = {
   baseURL: BASE_URL,
