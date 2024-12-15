@@ -8,10 +8,17 @@ export const useJobStore = defineStore("job", () => {
   let _job = ref<Task>();
 
   async function updateData(question: string) {
-    const res = (await fetchSimpleJob(`{ "task": "${question}" }`)).data as Response<any>;
-    // const res = (await fetchLevelJob(`{ "task": "${question}" }`)).data as Response<any>;
-    console.debug("res", res);
-    _job.value = convertData(res.data);
+    let isSuccess = false
+    try {
+      const res = (await fetchSimpleJob(`{ "task": "${question}" }`)).data as Response<any>;
+      // const res = (await fetchLevelJob(`{ "task": "${question}" }`)).data as Response<any>;
+      console.debug("res", res);
+      _job.value = convertData(res.data);
+      isSuccess = true
+    } catch (error) {
+      console.error(error)
+    }
+    return isSuccess
 
     function convertData(data: any) {
       const children = data.subtasks;
