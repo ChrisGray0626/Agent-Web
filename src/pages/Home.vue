@@ -5,11 +5,11 @@ import Case from "@/components/Case.vue";
 
 <template>
   <div id="container">
-    <el-image
-      src="http://8.217.104.137:39999/_next/image?url=%2Flogo-light.png&w=640&q=75"
-      mode="fit"
-      style="position: absolute; top: 35px; right: 35px; height: 35px"
-    />
+    <!--    <el-image-->
+    <!--      src="http://8.217.104.137:39999/_next/image?url=%2Flogo-light.png&w=640&q=75"-->
+    <!--      mode="fit"-->
+    <!--      style="position: absolute; top: 35px; right: 35px; height: 35px"-->
+    <!--    />-->
     <div class="title">AI GIS SYSTEM</div>
     <div class="content">
       <Question />
