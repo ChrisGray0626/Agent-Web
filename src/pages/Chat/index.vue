@@ -1,16 +1,57 @@
 <script setup lang="ts">
 import { useRouter } from "vue-router";
+import { ref, reactive } from "vue";
+import axios from "axios";
 
 const router = useRouter();
 const go = () => {
-  router.push({ path: "/workflow", replace: true });
+  router.back()
 };
+interface historyType {
+  role: string;
+  content: string
+}
+const question = ref("")
+const history = reactive<historyType[]>([
+
+]);
+const baseURL = 'http://10.130.11.30:8001'
+const sendMessage = () => {
+  history.push({
+    role: 'user',
+    content: question.value
+  })
+  question.value = ''
+  return axios.post(`${baseURL}/chat`, {
+    type: "kimi",
+    model: "moonshot-v1-32k",
+    messages: history
+  })
+}
+const chat = async () => {
+  //What are the main components needed to set up QGIS Server on a Debian-based system?
+  const resp = await sendMessage()
+  history.splice(0, history.length, ...resp.data.messages)
+}
 </script>
 
 <template>
   <div id="container">
-    <div class="title">Building...</div>
-    <el-button class="button" @click="go">Build Workflow</el-button>
+    <div class="chat-box">
+      <div class="conv" v-for="(item, index) of history" :key="index" :class="item.role == 'assistant' ? 'left' : 'right'">
+        <div class="icon">{{ item.role }}</div>
+        <div class="message">{{ item.content }}</div>
+      </div>
+      <el-input 
+      v-model="question" 
+      class="input-box" 
+      size="large" 
+      type="textarea" 
+      :rows="3" 
+      placeholder="Input your questions."
+      @keyup.enter="chat"></el-input>
+    </div>
+    <el-button class="back" size="large" @click="go">Back</el-button>
   </div>
 </template>
 
@@ -23,24 +64,59 @@ const go = () => {
   justify-content: center;
   align-items: center;
 
-  .title {
-    font-size: 100px;
-    text-align: center;
-    background: linear-gradient(135deg, #c850c0, #4158d0);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-family: AppleSystemUIFont, serif;
+  .chat-box {
+    width: 70%;
+    height: 90%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
+    box-shadow: 1px 1px 5px 5px #777;
+    padding: 10px 0px;
+    .conv {
+      width: 90%;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      .icon {
+        border-radius: 50%;
+        width: 4rem;
+        height: 4rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .message {
+        margin-top: 10px;
+        border: 1px black solid;
+        padding: 10px;
+      }
+    }
+    .left {
+      align-items: flex-start;
+      .icon {
+        background-color: skyblue;
+      }
+    }
+    .right {
+      align-items: flex-end;
+      .icon {
+        background-color: gray;
+      }
+    }
+    .input-box {
+      position: absolute;
+      bottom: 5px;
+      width: 90%;
+      margin: 10px 0px;
+    }
   }
 
-  .button {
-    font-size: 25px;
-    margin: 20px;
-    height: 100px;
-    width: 200px;
-    font-family: AppleSystemUIFont, serif;
-    color: #ffffff;
-    background: linear-gradient(135deg, #a1c4fd, #c2e9fb);
+  .back {
+    position: absolute;
+    top: 10px;
+    left: 10px;
   }
 }
 </style>

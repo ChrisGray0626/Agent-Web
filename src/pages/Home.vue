@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import Question from "@/components/Question.vue";
 import Case from "@/components/Case.vue";
+import { useRouter } from "vue-router";
+
+const router = useRouter()
 </script>
 
 <template>
@@ -17,6 +20,9 @@ import Case from "@/components/Case.vue";
         <Case />
       </div>
     </div>
+    <el-button size="large" class="chat" @click="() => {
+      router.push('/chat')
+    }">Chat</el-button>
   </div>
 </template>
 
@@ -51,6 +57,11 @@ import Case from "@/components/Case.vue";
       padding: 20px;
       width: 100%;
     }
+  }
+  .chat {
+    position: absolute;
+    top: 10px;
+    right: 10px;
   }
 }
 </style>
