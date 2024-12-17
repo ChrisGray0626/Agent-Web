@@ -17,7 +17,7 @@ const axiosInstance = createAxiosInstance(axiosConfig);
  * 获取工作空间
  */
 export function fetchWorkspace() {
-  return axiosInstance.get("qgis/process/list_dir_with_structure/?dir=/tmp/qgis");
+  return axiosInstance.get("qgis/process/list_qgis_temp_dir_with_structure/");
 }
 
 /**

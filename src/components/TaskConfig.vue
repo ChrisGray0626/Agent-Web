@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import {Close, Download} from "@element-plus/icons-vue";
-import {useTaskStore} from "@/store/task.ts";
-import {computed, ref} from "vue";
-import {downloadFile, process} from "@/api";
-import {ProcessResponse, Response} from "@/type.ts";
+import { Close, Download } from "@element-plus/icons-vue";
+import { useTaskStore } from "@/store/task.ts";
+import { computed, ref } from "vue";
+import { downloadFile, process } from "@/api";
+import { ProcessResponse, Response } from "@/type.ts";
 
 const taskStore = useTaskStore();
 
@@ -122,7 +122,7 @@ async function download() {
   border-color: aqua;
 }
 
-/deep/ .el-textarea__inner {
+:deep(.el-textarea__inner) {
   resize: none;
 }
 </style>
