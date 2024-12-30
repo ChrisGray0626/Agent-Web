@@ -30,8 +30,8 @@ function setInterceptor(instance: AxiosInstance) {
       // 检查接口调用状态
       if (response.data.code != SUCCESS_CODE) {
         // 弹出错误信息
-        ElNotification.error({
-          title: "Error",
+        ElNotification({
+          // title: "Error",
           message: response.data.message,
           duration: 2000,
         });
