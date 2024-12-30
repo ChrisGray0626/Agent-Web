@@ -9,7 +9,11 @@ const taskStore = useTaskStore();
 
 let res = ref<Response<ProcessResponse>>();
 const tableData = computed(
-  () => taskStore.tool?.args.map((arg) => ({ input: "", ...arg })) || [],
+  () => {
+    const tableData = taskStore.tool?.args.map((arg) => ({ ...arg })) || []
+    console.log(1, tableData);
+    return tableData
+  }
 );
 
 async function onExecute(
@@ -17,7 +21,7 @@ async function onExecute(
   parameters: typeof tableData.value,
 ) {
   const config = Object.fromEntries(
-    parameters.map((par) => [par.name, par.input]),
+    parameters.map((par) => [par.name, par.value]),
   );
   if (id) {
     res.value = (await process(id, config)).data as Response<ProcessResponse>;
@@ -75,7 +79,7 @@ async function download() {
           <el-table-column prop="input" label="Input">
             <template #default="scope">
               <el-input
-                v-model="scope.row.input"
+                v-model="scope.row.value"
                 style="height: 100%; width: 100%"
                 type="textarea"
                 autosize

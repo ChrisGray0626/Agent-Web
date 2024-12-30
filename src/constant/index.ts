@@ -65,7 +65,12 @@ export const MOCK_JOB = {
         "task": "Merge multiple TIF files into a single raster dataset",
         "toolId": "gdal:merge",
         "subtasks": [],
-        "toolName": "gdal:merge"
+        "toolName": "gdal:merge",
+        "parameters": {
+          "INPUT": "111",
+          "MASK": "222",
+          "OUTPUT": "333"
+        }
       },
       {
         "task": "Clip the merged raster dataset using the shape of the island from the vector file to extract the relevant elevation data",

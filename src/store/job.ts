@@ -14,6 +14,7 @@ export const useJobStore = defineStore("job", () => {
       // const res = (await fetchLevelJob(`{ "task": "${question}" }`)).data as Response<any>;
       console.debug("res", res);
       _job.value = convertData(res.data);
+      console.log(_job.value);
       isSuccess = true
     } catch (error) {
       console.error(error)
@@ -22,8 +23,8 @@ export const useJobStore = defineStore("job", () => {
 
     function convertData(data: any) {
       const children = data.subtasks;
-      const task = new Task(data.task, data.toolId, data.toolName);
-
+      const task = new Task(data.task, data.toolId, data.toolName, data.parameters ? data.parameters : {});
+      task.mapParametersToToolArgs();
       if (children && children.length > 0) {
         for (let i = 0; i < children.length; i++) {
           task.addChild(convertData(children[i]));
@@ -37,5 +38,5 @@ export const useJobStore = defineStore("job", () => {
 
   const workflowData = computed(() => jobLeafNode2G6Graph(_job.value as Task));
 
-  return { updateData, breakdownData, workflowData };
+  return { _job, updateData, breakdownData, workflowData };
 });
