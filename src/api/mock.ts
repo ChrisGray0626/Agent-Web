@@ -14,7 +14,7 @@ export const fetchSimpleJob = (task: string) =>
         resolve({
           data: MOCK_JOB,
         }),
-      1000,
+      0,
     );
   });
 
@@ -37,6 +37,6 @@ export const fetchTool = (_toolId: string) =>
         resolve({
           data: MOCK_TOOL,
         }),
-      500,
+      0,
     );
   });

@@ -1,30 +1,36 @@
-import {defineStore} from "pinia";
-import {job2G6TreeGraph, jobLeafNode2G6Graph} from "@/utils/graphUtil.ts";
-import {computed, ref} from "vue";
-import {fetchSimpleJob} from "@/api";
-import {Response, Task} from "@/type.ts";
+import { defineStore } from "pinia";
+import { job2G6TreeGraph, jobLeafNode2G6Graph } from "@/utils/graphUtil.ts";
+import { computed, ref } from "vue";
+import { fetchSimpleJob } from "@/api";
+import { Response, Task } from "@/type.ts";
 
 export const useJobStore = defineStore("job", () => {
   let _job = ref<Task>();
 
   async function updateData(question: string) {
-    let isSuccess = false
+    let isSuccess = false;
     try {
-      const res = (await fetchSimpleJob(`{ "task": "${question}" }`)).data as Response<any>;
+      const res = (await fetchSimpleJob(`{ "task": "${question}" }`))
+        .data as Response<any>;
       // const res = (await fetchLevelJob(`{ "task": "${question}" }`)).data as Response<any>;
       console.debug("res", res);
       _job.value = convertData(res.data);
       console.log(_job.value);
-      isSuccess = true
+      isSuccess = true;
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
-    return isSuccess
+    return isSuccess;
 
     function convertData(data: any) {
       const children = data.subtasks;
-      const task = new Task(data.task, data.toolId, data.toolName, data.parameters ? data.parameters : {});
-      task.mapParametersToToolArgs();
+      const task = new Task(
+        data.task,
+        data.toolId,
+        data.toolName,
+        data.parameters ? data.parameters : {},
+      );
+
       if (children && children.length > 0) {
         for (let i = 0; i < children.length; i++) {
           task.addChild(convertData(children[i]));

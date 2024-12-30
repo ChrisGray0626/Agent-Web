@@ -3,9 +3,9 @@
  * @Author: Chris
  * @Date: 2024/6/7
  */
-import G6, {TreeGraphData} from "@antv/g6";
-import {EdgeConfig, GraphData, NodeConfig} from "@antv/g6-core/lib/types";
-import {Task} from "@/type.ts";
+import G6, { TreeGraphData } from "@antv/g6";
+import { EdgeConfig, GraphData, NodeConfig } from "@antv/g6-core/lib/types";
+import { Task } from "@/type.ts";
 
 export function job2G6TreeGraph(job: Task) {
   function buildTreeNode(task: Task, label: string) {
@@ -133,3 +133,20 @@ export function textWrapping(
   return res;
 }
 // calculation of flo|od affected area
+
+export function mapTaskParametersToToolArgs(task: Task) {
+  // 遍历 task.parameters 对象，将每个键值对放入 tool.args 中
+  for (const key in task.parameters) {
+    if (task.parameters.hasOwnProperty(key)) {
+      const paramValue = task.parameters[key];
+
+      // 找到与参数名匹配的 arg
+      const arg = task.tool.args.find((arg) => arg.name === key);
+
+      // 如果找到匹配的 arg，则添加 value 属性
+      if (arg) {
+        arg.value = paramValue;
+      }
+    }
+  }
+}

@@ -1,7 +1,8 @@
-import {defineStore} from "pinia";
-import {computed, ref} from "vue";
-import {Response, Task, Tool} from "@/type.ts";
-import {fetchTool} from "@/api";
+import { defineStore } from "pinia";
+import { computed, ref } from "vue";
+import { Response, Task, Tool } from "@/type.ts";
+import { fetchTool } from "@/api";
+import { mapTaskParametersToToolArgs } from "@/utils/graphUtil.ts";
 
 export const useTaskStore = defineStore("node", () => {
   let _task = ref<Task>();
@@ -14,6 +15,7 @@ export const useTaskStore = defineStore("node", () => {
     _task.value = task;
     const res = (await fetchTool(_task.value.tool.id)).data as Response<Tool>;
     _task.value.tool = res.data;
+    mapTaskParametersToToolArgs(_task.value);
     console.log(_task.value);
   }
 
